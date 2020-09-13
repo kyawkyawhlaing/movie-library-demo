@@ -9,8 +9,9 @@
           &starf; {{item.rating}}
         </p>
       </div>
+      <pagination :meta="meta" @pagination="getMovie" />
     </div>
-    <div class="col-lg-4 row">
+    <div class="col-lg-4 row bg-warning">
       <h4
         class="text-left col-lg-5 offset-lg-1"
         v-for="item in items"
@@ -21,16 +22,31 @@
 </template>
 
 <script>
+import pagination from "../components/Pagination";
 export default {
+  components: {
+    pagination,
+  },
   data() {
     return {
       items: null,
+      meta: {},
     };
   },
   created() {
-    axios.get("/api/movie").then((response) => {
-      this.items = response.data.data;
-    });
+    this.getMovie();
+  },
+  methods: {
+    getMovie(page) {
+      axios
+        .get("/api/movie", {
+          params: { page },
+        })
+        .then((response) => {
+          this.items = response.data.data;
+          this.meta = response.data.meta;
+        });
+    },
   },
 };
 </script>
