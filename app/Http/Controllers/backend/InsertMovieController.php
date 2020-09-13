@@ -14,7 +14,7 @@ class InsertMovieController extends Controller
 
     public function __construct()
     {
-       // 
+        // 
     }
 
     public function index()
@@ -67,17 +67,16 @@ class InsertMovieController extends Controller
         // if proerty is not found in the collection instance,return 404 page
         $release_year = Release::where('releaseYear', '=', $name)->firstOrFail();
         //attach or generate id into pivot table
-        $movie->releases()->attach($release_year->id); 
+        $movie->releases()->attach($release_year->id);
 
         if (!empty($request->input('genres'))) {
             $input = $request->input('genres');
             //insert resources into database table
             //attach or generate id into pivot table
+
             foreach ($input as $key => $value) {
-                $genre = new Genre();
-                $genre->genre = $value;
-                $genre->save();
-                $movie->genres()->attach($genre); 
+                $genre = Genre::where('genre', '=', $value)->firstOrFail();
+                $movie->genres()->attach($genre->id);
             }
         }
         //back 1 step and return message 
