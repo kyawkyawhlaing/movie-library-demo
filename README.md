@@ -1,4 +1,6 @@
-# ![underconstruction](public/images/construction-illustration_11345-1.jpg)
+<p align="center">
+  <img width="460" height="300" src="public/images/construction-illustration_11345-1.jpg">
+</p>
 
 ## About Laravel
 
