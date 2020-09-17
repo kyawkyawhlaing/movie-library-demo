@@ -3,8 +3,10 @@
 /public/storage
 /storage/*.key
 /vendor
+package-lock.json
+composer.lock
 /resources/js/views/*.jpg
-/public/[a-z].js
+/public/*[\w].js
 .env
 .env.backup
 .phpunit.result.cache
