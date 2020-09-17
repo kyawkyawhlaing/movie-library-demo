@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="460" height="300" src="public/images/construction-illustration_11345-1.jpg">
+  <img width="600" height="400" src="public/images/construction-illustration_11345-1.jpg">
 </p>
 
 ## About Laravel
