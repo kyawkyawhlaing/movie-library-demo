@@ -1,16 +1,10 @@
-@extends('layouts.master')
+@extends('layouts.dashboard')
 @section('title','InsertMovie')
 @section('content')
     
 <div>
     <div class="row">
-        <div class="col-6 cover d-flex align-items-center">
-            <div class="col-10 mx-auto zindex">
-                <h1>Feel Free</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore voluptatem expedita ea ut error accusantium delectus id, itaque autem! Temporibus voluptatem ipsa excepturi dolor, dicta illo voluptatibus quos! Architecto, commodi?</p>
-            </div>
-        </div>
-    <form method="POST" class="col-5 mx-auto" enctype="multipart/form-data">
+    <form method="POST" class="col-6 mx-auto" enctype="multipart/form-data">
      @csrf
      @include('alert') 
         <div class="form-row">
@@ -73,8 +67,7 @@
         <div class="form-group">
             <input type="file" name="image" class="form-control-file">
         </div>
-        <button type="submit" class="btn btn-outline-danger">Insert</button>
-        <a href="{{url('logout')}}" style="float: right; font-weight: 600; color:black;">Logout</a>
+        <button type="submit" class="btn btn-danger my-3">Insert</button>
     </form>
     </div>
 

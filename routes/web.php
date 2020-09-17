@@ -20,8 +20,6 @@ Route::get('/{vue_capture?}', function () {
 Route::view('master', 'layouts.master');
 Route::get('/login','Auth\LoginController@show');
 Route::post('/login', 'Auth\LoginController@login');
-Route::get('/register', 'Auth\RegisterController@show');
-Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::resource('/insertMovie', 'backend\InsertMovieController')->middleware('auth');

@@ -42,7 +42,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["meta", "link"],
+  props: ["meta"],
   data: function data() {
     return {};
   },
@@ -68,6 +68,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Pagination */ "./resources/js/components/Pagination.vue");
+//
 //
 //
 //
@@ -286,51 +287,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-5 mx-5 row" }, [
-    _c(
-      "div",
-      { staticClass: "row col-lg-8" },
-      [
+  return _c(
+    "div",
+    { staticClass: "mb-5 mx-5 row" },
+    [
+      _c("h2", { staticClass: "col-12 my-5" }, [_vm._v("Movie")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row col-lg-8" },
         _vm._l(_vm.items, function(item) {
-          return _c("div", { key: item.movie, staticClass: "poster" }, [
-            _c("img", {
-              attrs: {
-                src: __webpack_require__(/*! ./pexels-matt-hardy-5059013.jpg */ "./resources/js/views/pexels-matt-hardy-5059013.jpg"),
-                width: "165px",
-                height: "248px",
-                alt: "girl"
-              }
-            }),
-            _vm._v(" "),
-            _c("p", { staticClass: "ellipsis" }, [
-              _vm._v("\n        " + _vm._s(item.movie) + "\n        "),
-              _c("br"),
-              _vm._v("\n        ★ " + _vm._s(item.rating) + "\n      ")
-            ])
-          ])
+          return _c(
+            "div",
+            { key: item.movie, staticClass: "poster col-md-3" },
+            [
+              _c("img", {
+                attrs: {
+                  src: "./storage/" + item.image,
+                  width: "100%",
+                  height: "260px",
+                  alt: item.movie
+                }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "ellipsis" }, [
+                _vm._v("\n        " + _vm._s(item.movie) + "\n        "),
+                _c("br"),
+                _vm._v("\n        ★ " + _vm._s(item.rating) + "\n      ")
+              ])
+            ]
+          )
         }),
-        _vm._v(" "),
-        _c("pagination", {
-          attrs: { meta: _vm.meta },
-          on: { pagination: _vm.getMovie }
-        })
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-lg-4 row bg-warning" },
-      _vm._l(_vm.items, function(item) {
-        return _c(
-          "h4",
-          { key: item.movie, staticClass: "text-left col-lg-5 offset-lg-1" },
-          [_vm._v(_vm._s(item.release_year))]
-        )
-      }),
-      0
-    )
-  ])
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-4 row bg-warning" },
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "h4",
+            { key: item.movie, staticClass: "text-left col-lg-5 offset-lg-1" },
+            [_vm._v(_vm._s(item.release_year))]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        attrs: { meta: _vm.meta },
+        on: { pagination: _vm.getMovie }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -492,17 +502,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_63cd6604_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/views/pexels-matt-hardy-5059013.jpg":
-/*!**********************************************************!*\
-  !*** ./resources/js/views/pexels-matt-hardy-5059013.jpg ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/pexels-matt-hardy-5059013.jpg?4144a3913f71abc8f35f908876307c6f";
 
 /***/ })
 

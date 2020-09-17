@@ -30,6 +30,6 @@ body {
 }
 
 nav {
-  background: lightseagreen;
+  background:crimson;
 }
 </style>

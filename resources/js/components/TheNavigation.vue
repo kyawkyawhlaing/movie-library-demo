@@ -1,7 +1,14 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand">
+        <span>K</span>-
+        <span class="text-success">m</span>
+        <span class="text-white">o</span>
+        <span class="text-secondary">v</span>
+        <span class="text-purple">i</span>
+        <span class="text-primary">e</span>
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,13 +22,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <router-link to="/" class="nav-link active">
+          <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" />
+            <div class="input-group-append">
+              <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+          <router-link to="/" class="nav-link active text-white">
             Home
             <span class="sr-only">(current)</span>
           </router-link>
-          <router-link to="#" class="nav-link">Movie</router-link>
-          <router-link to="#" class="nav-link">Series</router-link>
-          <router-link to="/contact" class="nav-link">Contact</router-link>
+          <router-link to="#" class="nav-link text-white">Browse</router-link>
+          <router-link to="/contact" class="nav-link text-white">Contact Us</router-link>
         </div>
       </div>
     </nav>
@@ -48,5 +62,17 @@ a {
 
 div.navbar-nav {
   margin-left: auto;
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+}
+
+.navbar-brand > span {
+  color: white;
+}
+
+.navbar-brand > .text-purple {
+  color: purple;
 }
 </style>

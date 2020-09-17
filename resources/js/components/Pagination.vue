@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  props: ["meta", "link"],
+  props: ["meta"],
   data() {
     return {};
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <footer class="row">
-      <div class="col-sm-4 col-5 offset-1">
+      <div class="col-sm-4 col-5 offset-1 mt-3">
         <p>
           Home
           <br />Service
@@ -12,7 +12,7 @@
           <br />
         </p>
       </div>
-      <div class="col-sm-4 col-5">
+      <div class="col-sm-4 col-5 mt-3">
         <address>
           Written by
           <a href="mailto:webmaster@example.com">Jon Doe</a>.
@@ -35,7 +35,7 @@ export default {};
 
 <style scoped>
 footer {
-  background-color: lightseagreen;
+  background-color: crimson;
 }
 
 a {

@@ -2127,6 +2127,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Component mounted.");
@@ -6567,7 +6581,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n*,\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  list-style: 0;\n  font-size: 1em;\n  font-weight: 600;\n}\nnav {\n  background: lightseagreen;\n}\n", ""]);
+exports.push([module.i, "\n*,\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  list-style: 0;\n  font-size: 1em;\n  font-weight: 600;\n}\nnav {\n  background:crimson;\n}\n", ""]);
 
 // exports
 
@@ -6586,7 +6600,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nfooter[data-v-61a7c374] {\n  background-color: lightseagreen;\n}\na[data-v-61a7c374] {\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\nfooter[data-v-61a7c374] {\n  background-color: crimson;\n}\na[data-v-61a7c374] {\n  color: white;\n}\n", ""]);
 
 // exports
 
@@ -6605,7 +6619,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-brand[data-v-62ef6e8a] {\n  font-size: 1.5rem;\n  font-weight: bolder;\n}\na[data-v-62ef6e8a] {\n  margin: 0 1.5rem;\n  color: white;\n}\ndiv.navbar-nav[data-v-62ef6e8a] {\n  margin-left: auto;\n}\n", ""]);
+exports.push([module.i, "\n.navbar-brand[data-v-62ef6e8a] {\n  font-size: 1.5rem;\n  font-weight: bolder;\n}\na[data-v-62ef6e8a] {\n  margin: 0 1.5rem;\n  color: white;\n}\ndiv.navbar-nav[data-v-62ef6e8a] {\n  margin-left: auto;\n}\n.navbar-brand[data-v-62ef6e8a] {\n  font-size: 2.5rem;\n}\n.navbar-brand > span[data-v-62ef6e8a] {\n  color: white;\n}\n.navbar-brand > .text-purple[data-v-62ef6e8a] {\n  color: purple;\n}\n", ""]);
 
 // exports
 
@@ -38503,7 +38517,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container-fluid" }, [
       _c("footer", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-4 col-5 offset-1" }, [
+        _c("div", { staticClass: "col-sm-4 col-5 offset-1 mt-3" }, [
           _c("p", [
             _vm._v("\n        Home\n        "),
             _c("br"),
@@ -38520,7 +38534,7 @@ var staticRenderFns = [
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-sm-4 col-5" }, [
+        _c("div", { staticClass: "col-sm-4 col-5 mt-3" }, [
           _c("address", [
             _vm._v("\n        Written by\n        "),
             _c("a", { attrs: { href: "mailto:webmaster@example.com" } }, [
@@ -38566,11 +38580,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light" }, [
-      _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-        _vm._v("Navbar")
-      ]),
-      _vm._v(" "),
       _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1),
       _vm._v(" "),
       _c(
         "div",
@@ -38583,9 +38595,14 @@ var render = function() {
             "div",
             { staticClass: "navbar-nav" },
             [
+              _vm._m(2),
+              _vm._v(" "),
               _c(
                 "router-link",
-                { staticClass: "nav-link active", attrs: { to: "/" } },
+                {
+                  staticClass: "nav-link active text-white",
+                  attrs: { to: "/" }
+                },
                 [
                   _vm._v("\n          Home\n          "),
                   _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
@@ -38594,20 +38611,17 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "router-link",
-                { staticClass: "nav-link", attrs: { to: "#" } },
-                [_vm._v("Movie")]
+                { staticClass: "nav-link text-white", attrs: { to: "#" } },
+                [_vm._v("Browse")]
               ),
               _vm._v(" "),
               _c(
                 "router-link",
-                { staticClass: "nav-link", attrs: { to: "#" } },
-                [_vm._v("Series")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "nav-link", attrs: { to: "/contact" } },
-                [_vm._v("Contact")]
+                {
+                  staticClass: "nav-link text-white",
+                  attrs: { to: "/contact" }
+                },
+                [_vm._v("Contact Us")]
               )
             ],
             1
@@ -38618,6 +38632,24 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "navbar-brand" }, [
+      _c("span", [_vm._v("K")]),
+      _vm._v("-\n      "),
+      _c("span", { staticClass: "text-success" }, [_vm._v("m")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-white" }, [_vm._v("o")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-secondary" }, [_vm._v("v")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-purple" }, [_vm._v("i")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-primary" }, [_vm._v("e")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -38637,6 +38669,25 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", { staticClass: "form-inline" }, [
+      _c("input", {
+        staticClass: "form-control mr-sm-2",
+        attrs: { type: "search", placeholder: "Search" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group-append" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-navbar", attrs: { type: "submit" } },
+          [_c("i", { staticClass: "fas fa-search" })]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -41832,8 +41883,8 @@ if (inBrowser && window.Vue) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.11
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 
@@ -47272,7 +47323,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.11';
+Vue.version = '2.6.12';
 
 /*  */
 
@@ -49478,7 +49529,7 @@ function updateDOMProps (oldVnode, vnode) {
       // skip the update if old and new VDOM state is the same.
       // `value` is handled separately because the DOM value may be temporarily
       // out of sync with VDOM state due to focus, composition and modifiers.
-      // This  #4521 by skipping the unnecesarry `checked` update.
+      // This  #4521 by skipping the unnecessary `checked` update.
       cur !== oldProps[key]
     ) {
       // some property updates can throw
@@ -51723,7 +51774,7 @@ function parse (
       }
     },
     comment: function comment (text, start, end) {
-      // adding anyting as a sibling to the root node is forbidden
+      // adding anything as a sibling to the root node is forbidden
       // comments should still be allowed, but ignored
       if (currentParent) {
         var child = {

@@ -1,15 +1,15 @@
 <template>
   <div class="mb-5 mx-5 row">
+    <h2 class="col-12 my-5">Movie</h2>
     <div class="row col-lg-8">
-      <div class="poster" v-for="item in items" :key="item.movie">
-        <img src="./pexels-matt-hardy-5059013.jpg" width="165px" height="248px" alt="girl" />
+      <div class="poster col-md-3" v-for="item in items" :key="item.movie">
+        <img :src="'./storage/'+ item.image" width="100%" height="260px" :alt="item.movie" />
         <p class="ellipsis">
           {{ item.movie}}
           <br />
           &starf; {{item.rating}}
         </p>
       </div>
-      <pagination :meta="meta" @pagination="getMovie" />
     </div>
     <div class="col-lg-4 row bg-warning">
       <h4
@@ -18,6 +18,7 @@
         :key="item.movie"
       >{{ item.release_year}}</h4>
     </div>
+    <pagination :meta="meta" @pagination="getMovie" />
   </div>
 </template>
 
