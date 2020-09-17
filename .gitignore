@@ -4,7 +4,9 @@
 /storage/*.key
 /vendor
 /resources/js/views/*.jpg
-/public/*.js
+/public/404error.js
+contactComponent.js
+exampleComponent.js
 .env
 .env.backup
 .phpunit.result.cache
