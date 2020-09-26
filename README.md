@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="100%" height="auto" src="public/images/construction-illustration_11345-1.jpg">
+  <img width="700" height="auto" src="public/images/construction-illustration_11345-1.jpg">
 </p>
 
 ## Prerequisites
