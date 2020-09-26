@@ -4,8 +4,8 @@
 
 ## Prerequisites
 
-Install Latest PHP and its modules on your local computer 
-Install NPM and Composer package manager 
+Install Latest PHP and its modules on your local computer  
+Install NPM and Composer package manager   
 Install and run Apache Web server and MySQL 
 
 ### Installation 
