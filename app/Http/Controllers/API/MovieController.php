@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Movie as MovieResource;
@@ -84,4 +85,5 @@ class MovieController extends Controller
     {
         //
     }
+    
 }

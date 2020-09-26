@@ -11,12 +11,24 @@
         </p>
       </div>
     </div>
-    <div class="col-lg-4 row bg-warning">
-      <h4
-        class="text-left col-lg-5 offset-lg-1"
-        v-for="item in items"
-        :key="item.movie"
-      >{{ item.release_year}}</h4>
+    <div class="col-lg-4 row mb-5">
+      <div class="col-12">
+        <div class="k-badge">2020</div>
+        <div class="k-badge">2020</div>
+        <div class="k-badge">2020</div>
+        <div class="k-badge">2020</div>
+        <div class="k-badge">2020</div>
+        <div class="k-badge">2020</div>
+        <div class="k-badge">2020</div>
+      </div>
+      <div class="col-12">
+        <div class="k-badge">Adventure</div>
+        <div class="k-badge">Adventure</div>
+        <div class="k-badge">Adventure</div>
+        <div class="k-badge">Adventure</div>
+        <div class="k-badge">Adventure</div>
+        <div class="k-badge">Adventure</div>
+      </div>
     </div>
     <pagination :meta="meta" @pagination="getMovie" />
   </div>

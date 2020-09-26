@@ -1,6 +1,6 @@
 <template>
-  <div class="col-4 offset-4">
-    <ul class="pagination col-4 offset-4">
+  <div class="col-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4">
+    <ul class="pagination">
       <li class="page-item">
         <a
           class="page-link"
@@ -46,6 +46,5 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 </style>

@@ -22,20 +22,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" />
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
-          </form>
+          <v-search></v-search>
           <router-link to="/" class="nav-link active text-white">
             Home
             <span class="sr-only">(current)</span>
           </router-link>
           <router-link to="#" class="nav-link text-white">Browse</router-link>
-          <router-link to="/contact" class="nav-link text-white">Contact Us</router-link>
+          <router-link to="/contact" class="nav-link text-white">Contact</router-link>
+          <router-link :to="{name: 'Login'}" class="nav-link text-white">Login</router-link>
         </div>
       </div>
     </nav>

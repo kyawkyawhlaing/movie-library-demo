@@ -1,6 +1,8 @@
 <template>
   <div>
-    <TheNavigation />
+    <div v-if="this.$route.path !== '/dashboard'">
+      <TheNavigation/>
+    </div>
     <router-view :key="$route.path" />
     <Footer />
   </div>

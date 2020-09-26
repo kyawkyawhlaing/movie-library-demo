@@ -2,6 +2,8 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/404error.js": "/404error.js",
+    "/Dashboard.js": "/Dashboard.js",
     "/contactComponent.js": "/contactComponent.js",
-    "/exampleComponent.js": "/exampleComponent.js"
+    "/homeComponent.js": "/homeComponent.js",
+    "/login.js": "/login.js"
 }

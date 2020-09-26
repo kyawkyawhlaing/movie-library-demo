@@ -1,4 +1,5 @@
 window.Vue = require('vue');
+import Axios from 'axios';
 import VueRouter from 'vue-router';
 
 Vue.use( VueRouter)
@@ -8,7 +9,7 @@ const routes = [
         path: '/',
         name: 'Home',
         component: () => import(
-            /* webpackChunkName: "exampleComponent" */
+            /* webpackChunkName: "homeComponent" */
             './views/Home.vue'
         )
     },
@@ -19,6 +20,27 @@ const routes = [
             /* webpackChunkName: "contactComponent" */
             './views/Contact.vue'
         )
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import(
+            /* webpackChunkName: "login" */
+            './views/Login.vue'
+        )
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: () => import(
+            /* webpackChunkName: "Dashboard" */
+            './views/Admin/Dashboard.vue'
+        ),
+        beforeEnter: function (to, from, next) {
+            axios.get('/api/authenticated')
+                .then(() => next())
+                .catch(() => {return next({ name: "Home" });})
+        }
     },
     {
         path: '/404',

@@ -15,13 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{vue_capture?}', function () {
     return view('welcome');
-})->where('vue_capture', '[\/\w\.-]* && [!\/\login | insertMovie]');
+})->where('vue_capture', '(.*)');
 
-Route::view('master', 'layouts.master');
-Route::get('/login','Auth\LoginController@show');
-Route::post('/login', 'Auth\LoginController@login');
-Route::get('/logout', 'Auth\LoginController@logout');
-
-Route::resource('/insertMovie', 'backend\InsertMovieController')->middleware('auth');
+Route::resource('/insertMovie', 'backend\InsertMovieController');
 
 
