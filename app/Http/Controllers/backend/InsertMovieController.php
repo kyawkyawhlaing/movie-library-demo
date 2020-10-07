@@ -19,10 +19,12 @@ class InsertMovieController extends Controller
 
     public function index()
     {
-        /*passing data to corresponding blade file */
         $genres = Genre::select('genre', 'id')->get();
         $releases = Release::select('releaseYear', 'id')->get();
-        return view('backend.movie.insertMovie', compact('genres', 'releases'));
+        return response()->json([
+            'genres' => $genres,
+            'releases' => $releases
+        ],200);
     }
 
     /**
@@ -51,7 +53,7 @@ class InsertMovieController extends Controller
         $name = $request->file('image');
         $imgPath =  $name->store('poster', 'public');
 
-        $movie = new Movie([
+        $movie = Movie::create([
             'movie'     => $request->get('movie'),
             'image'     => $imgPath,
             'rating'    => $request->get('rating'),
@@ -61,10 +63,9 @@ class InsertMovieController extends Controller
             'releaseDate'      =>  $request->get('releaseDate'),
             'user_id'   => auth()->id(),
         ]);
-        $movie->save();
 
         $name = $request->get('releaseYear');
-        // if proerty is not found in the collection instance,return 404 page
+        // if property is not found in the collection instance,return 404 page
         $release_year = Release::where('releaseYear', '=', $name)->firstOrFail();
         //attach or generate id into pivot table
         $movie->releases()->attach($release_year->id);
@@ -73,14 +74,12 @@ class InsertMovieController extends Controller
             $input = $request->input('genres');
             //insert resources into database table
             //attach or generate id into pivot table
-
             foreach ($input as $key => $value) {
                 $genre = Genre::where('genre', '=', $value)->firstOrFail();
                 $movie->genres()->attach($genre->id);
             }
         }
-        //back 1 step and return message 
-        return redirect()->back()->with('status', 'Created Successfully');
+        return response()->json($movie, 201);
     }
 
     /**

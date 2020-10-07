@@ -1,6 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="login" class="col-sm-4 offset-sm-4">
+      <h1 class="text-center">Login Form</h1>
       <div v-if="errors !== 'Could not login.'">
         <div
           class="alert alert-danger"
@@ -12,18 +13,19 @@
         </div>
       </div>
       <div class="alert alert-danger" v-show="errors == 'Could not login.'">
-        {{errors}}
+        {{ errors }}
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
           type="email"
-          class="form-control"
+          class="form-control form-input"
           id="exampleInputEmail1"
           name="email"
           v-model="email"
           placeholder="Enter email"
         />
+        <span><i class="fa fa-envelope"></i></span>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
@@ -31,12 +33,13 @@
           type="password"
           name="password"
           v-model="password"
-          class="form-control"
+          class="form-control form-input"
           id="exampleInputPassword1"
           placeholder="Password"
         />
+        <span><i class="fa fa-lock"></i></span>
       </div>
-      <button type="submit" class="btn btn-crimson">Submit</button>
+      <button type="submit" class="btn btn-crimson">Login</button>
     </form>
   </div>
 </template>
@@ -84,5 +87,10 @@ form {
 .btn-crimson {
   background-color: crimson;
   color: white;
+}
+span {
+  position: relative;
+  top: -30px;
+  left: 3px;
 }
 </style>>

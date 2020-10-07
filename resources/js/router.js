@@ -2,7 +2,7 @@ window.Vue = require('vue');
 import Axios from 'axios';
 import VueRouter from 'vue-router';
 
-Vue.use( VueRouter)
+Vue.use(VueRouter)
 
 const routes = [
     {
@@ -39,15 +39,23 @@ const routes = [
         beforeEnter: function (to, from, next) {
             axios.get('/api/authenticated')
                 .then(() => next())
-                .catch(() => {return next({ name: "Home" });})
+                .catch(() => { return next({ name: "Home" }); })
         }
+    },
+    {
+        path: "/insertmovie",
+        name: "InsertMovie",
+        component: () => import(
+            /*webpackChunkname: "InsertMovie" */
+            './views/Admin/InsertMovie.vue'
+        )
     },
     {
         path: '/404',
         alias: '*',
         name: 'NotFound',
         component: () => import(
-        /* webpackChunkName: "404error" */
+            /* webpackChunkName: "404error" */
             './views/NotFound.vue'
         )
     }

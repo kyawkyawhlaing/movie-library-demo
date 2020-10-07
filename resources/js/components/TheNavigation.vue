@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-crimson">
       <a class="navbar-brand">
         <span>K</span>-
         <span class="text-success">m</span>

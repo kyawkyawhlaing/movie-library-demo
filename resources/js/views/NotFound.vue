@@ -9,7 +9,7 @@
         Sorry but the page you are looking for does not exist, have been
         removed. name changed or is temporarily unavailable
       </p>
-      <router-link to='/'>Back to homepage</router-link>
+      <router-link to="/">Back To Home Page</router-link>
     </div>
   </div>
 </template>
@@ -82,7 +82,7 @@ body {
   display: inline-block;
   padding: 12px 30px;
   font-weight: 700;
-  background-color: #f99827;
+  background-color: crimson;
   color: #fff;
   border-radius: 40px;
   text-decoration: none;

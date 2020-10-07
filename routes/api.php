@@ -9,13 +9,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->get('/authenticated', function () {
     return true;
 });
-// Route::get('movie', 'movieController@retrieve');
-// Route::get('movie/{id}', 'movieController@singleRetrieve');
-// Route::post('movie','movieController@create');
-// Route::put('movie/{movie}','movieController@update');
-// Route::delete('movie/{movie}', 'movieController@delete');
 
 Route::apiResource('movie','API\MovieController');
 Route::post('login', 'Auth\LoginController@vuelogin');
 Route::post('logout','Auth\LoginController@logout');
+Route::get('insertMovie','backend\InsertMovieController@index');
+Route::post('insertMovie','backend\InsertMovieController@store');
 

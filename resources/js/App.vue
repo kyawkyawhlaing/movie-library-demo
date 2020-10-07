@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div v-if="this.$route.path !== '/dashboard'">
-      <TheNavigation/>
+    <div v-if="$route.path !== '/dashboard' && $route.name !== 'NotFound'">
+      <TheNavigation />
     </div>
     <router-view :key="$route.path" />
-    <Footer />
+    <div v-if="$route.path !== '/dashboard' && $route.name !== 'NotFound'">
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ body {
   font-weight: 600;
 }
 
-nav {
-  background:crimson;
+.bg-crimson {
+  background: crimson;
 }
 </style>

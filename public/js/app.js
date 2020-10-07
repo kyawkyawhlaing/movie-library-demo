@@ -2035,6 +2035,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6609,7 +6611,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n*,\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  list-style: 0;\n  font-size: 1em;\n  font-weight: 600;\n}\nnav {\n  background:crimson;\n}\n", ""]);
+exports.push([module.i, "\n*,\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  list-style: 0;\n  font-size: 1em;\n  font-weight: 600;\n}\n.bg-crimson {\n  background: crimson;\n}\n", ""]);
 
 // exports
 
@@ -38554,13 +38556,15 @@ var render = function() {
   return _c(
     "div",
     [
-      this.$route.path !== "/dashboard"
+      _vm.$route.path !== "/dashboard" && _vm.$route.name !== "NotFound"
         ? _c("div", [_c("TheNavigation")], 1)
         : _vm._e(),
       _vm._v(" "),
       _c("router-view", { key: _vm.$route.path }),
       _vm._v(" "),
-      _c("Footer")
+      _vm.$route.path !== "/dashboard" && _vm.$route.name !== "NotFound"
+        ? _c("div", [_c("Footer")], 1)
+        : _vm._e()
     ],
     1
   )
@@ -38697,65 +38701,71 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("nav", { staticClass: "navbar navbar-expand-lg navbar-light" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "collapse navbar-collapse",
-          attrs: { id: "navbarNavAltMarkup" }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "navbar-nav" },
-            [
-              _c("v-search"),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link active text-white",
-                  attrs: { to: "/" }
-                },
-                [
-                  _vm._v("\n          Home\n          "),
-                  _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                { staticClass: "nav-link text-white", attrs: { to: "#" } },
-                [_vm._v("Browse")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link text-white",
-                  attrs: { to: "/contact" }
-                },
-                [_vm._v("Contact")]
-              ),
-              _vm._v(" "),
-              _c(
-                "router-link",
-                {
-                  staticClass: "nav-link text-white",
-                  attrs: { to: { name: "Login" } }
-                },
-                [_vm._v("Login")]
-              )
-            ],
-            1
-          )
-        ]
-      )
-    ])
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-expand-lg navbar-light bg-crimson" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarNavAltMarkup" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "navbar-nav" },
+              [
+                _c("v-search"),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link active text-white",
+                    attrs: { to: "/" }
+                  },
+                  [
+                    _vm._v("\n          Home\n          "),
+                    _c("span", { staticClass: "sr-only" }, [
+                      _vm._v("(current)")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link text-white", attrs: { to: "#" } },
+                  [_vm._v("Browse")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link text-white",
+                    attrs: { to: "/contact" }
+                  },
+                  [_vm._v("Contact")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "nav-link text-white",
+                    attrs: { to: { name: "Login" } }
+                  },
+                  [_vm._v("Login")]
+                )
+              ],
+              1
+            )
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -54477,6 +54487,12 @@ var routes = [{
         name: "Home"
       });
     });
+  }
+}, {
+  path: "/insertmovie",
+  name: "InsertMovie",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./views/Admin/InsertMovie.vue */ "./resources/js/views/Admin/InsertMovie.vue"));
   }
 }, {
   path: '/404',

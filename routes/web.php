@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/{vue_capture?}', function () {
-    return view('welcome');
+    return view('home');
 })->where('vue_capture', '(.*)');
 
-Route::resource('/insertMovie', 'backend\InsertMovieController');
+// Route::resource('/insertMovie', 'backend\InsertMovieController');
 
 

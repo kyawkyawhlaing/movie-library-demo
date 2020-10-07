@@ -19,7 +19,7 @@
           <input
             type="tel"
             id="tel"
-            placeholder="09-125-678-234"
+            placeholder="09-125 678 234"
             pattern="[0-9]{2} ([0-9]{3}){3}"
             class="form-input"
           />

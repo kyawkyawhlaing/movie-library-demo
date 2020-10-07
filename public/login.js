@@ -54,6 +54,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "login",
@@ -100,7 +103,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nform[data-v-12f5395a] {\n  margin-top: 10%;\n  margin-bottom: 10%;\n}\n.btn-crimson[data-v-12f5395a] {\n  background-color: crimson;\n  color: white;\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-12f5395a] {\n  margin-top: 10%;\n  margin-bottom: 10%;\n}\n.btn-crimson[data-v-12f5395a] {\n  background-color: crimson;\n  color: white;\n}\nspan[data-v-12f5395a] {\n  position: relative;\n  top: -30px;\n  left: 3px;\n}\n", ""]);
 
 // exports
 
@@ -165,6 +168,8 @@ var render = function() {
         }
       },
       [
+        _c("h1", { staticClass: "text-center" }, [_vm._v("Login Form")]),
+        _vm._v(" "),
         _vm.errors !== "Could not login."
           ? _c(
               "div",
@@ -213,7 +218,7 @@ var render = function() {
                 expression: "email"
               }
             ],
-            staticClass: "form-control",
+            staticClass: "form-control form-input",
             attrs: {
               type: "email",
               id: "exampleInputEmail1",
@@ -229,7 +234,9 @@ var render = function() {
                 _vm.email = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm._m(0)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "form-group" }, [
@@ -246,7 +253,7 @@ var render = function() {
                 expression: "password"
               }
             ],
-            staticClass: "form-control",
+            staticClass: "form-control form-input",
             attrs: {
               type: "password",
               name: "password",
@@ -262,19 +269,34 @@ var render = function() {
                 _vm.password = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm._m(1)
         ]),
         _vm._v(" "),
         _c(
           "button",
           { staticClass: "btn btn-crimson", attrs: { type: "submit" } },
-          [_vm._v("Submit")]
+          [_vm._v("Login")]
         )
       ]
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fa fa-envelope" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [_c("i", { staticClass: "fa fa-lock" })])
+  }
+]
 render._withStripped = true
 
 
