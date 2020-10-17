@@ -124,7 +124,8 @@ __webpack_require__.r(__webpack_exports__);
       releaseDate: "",
       releaseYear: "",
       summary: "",
-      selectedFile: null
+      selectedFile: null,
+      movieGen: []
     };
   },
   methods: {
@@ -138,6 +139,7 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("cast", this.cast);
       formData.append("releaseDate", this.releaseDate);
       formData.append("releaseYear", this.releaseYear);
+      formData.append("genres", this.movieGen);
       axios.post("/api/insertMovie", formData)["catch"](function (error) {
         return console.log(error.response.data);
       });
@@ -312,7 +314,7 @@ var render = function() {
               return _c(
                 "div",
                 {
-                  key: genre.id,
+                  key: index,
                   staticClass: "form-check form-check-inline col-2"
                 },
                 [
@@ -321,46 +323,36 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.genres[index + "-" + genre.id],
-                        expression: "genres[index + '-' + genre.id]"
+                        value: _vm.movieGen,
+                        expression: "movieGen"
                       }
                     ],
                     staticClass: "form-check-input",
                     attrs: { type: "checkbox", id: "checkbox" + genre.id },
                     domProps: {
                       value: genre.genre,
-                      checked: Array.isArray(_vm.genres[index + "-" + genre.id])
-                        ? _vm._i(
-                            _vm.genres[index + "-" + genre.id],
-                            genre.genre
-                          ) > -1
-                        : _vm.genres[index + "-" + genre.id]
+                      checked: Array.isArray(_vm.movieGen)
+                        ? _vm._i(_vm.movieGen, genre.genre) > -1
+                        : _vm.movieGen
                     },
                     on: {
                       change: function($event) {
-                        var $$a = _vm.genres[index + "-" + genre.id],
+                        var $$a = _vm.movieGen,
                           $$el = $event.target,
                           $$c = $$el.checked ? true : false
                         if (Array.isArray($$a)) {
                           var $$v = genre.genre,
                             $$i = _vm._i($$a, $$v)
                           if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.genres,
-                                index + "-" + genre.id,
-                                $$a.concat([$$v])
-                              )
+                            $$i < 0 && (_vm.movieGen = $$a.concat([$$v]))
                           } else {
                             $$i > -1 &&
-                              _vm.$set(
-                                _vm.genres,
-                                index + "-" + genre.id,
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                              (_vm.movieGen = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
                           }
                         } else {
-                          _vm.$set(_vm.genres, index + "-" + genre.id, $$c)
+                          _vm.movieGen = $$c
                         }
                       }
                     }

@@ -43,12 +43,12 @@
         <div
           class="form-check form-check-inline col-2"
           v-for="(genre, index) in genres"
-          :key="genre.id"
+          :key="index"
         >
           <input
             class="form-check-input"
             type="checkbox"
-            v-model="genres[index + '-' + genre.id]"
+            v-model="movieGen"
             :id="'checkbox' + genre.id"
             :value="genre.genre"
           />
@@ -115,6 +115,7 @@ export default {
       releaseYear: "",
       summary: "",
       selectedFile: null,
+      movieGen: [],
     };
   },
   methods: {
@@ -128,6 +129,7 @@ export default {
           formData.append("cast",this.cast)
           formData.append("releaseDate",this.releaseDate)
           formData.append("releaseYear",this.releaseYear)
+          formData.append("genres",this.movieGen)
       axios
         .post("/api/insertMovie", formData)
         .catch((error) => console.log(error.response.data));

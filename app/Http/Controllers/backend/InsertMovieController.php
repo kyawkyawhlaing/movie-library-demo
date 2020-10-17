@@ -70,11 +70,13 @@ class InsertMovieController extends Controller
         //attach or generate id into pivot table
         $movie->releases()->attach($release_year->id);
 
+        
         if (!empty($request->input('genres'))) {
             $input = $request->input('genres');
             //insert resources into database table
             //attach or generate id into pivot table
-            foreach ($input as $key => $value) {
+            $arr = explode(",",$input);
+            foreach ($arr as $key => $value) {
                 $genre = Genre::where('genre', '=', $value)->firstOrFail();
                 $movie->genres()->attach($genre->id);
             }
