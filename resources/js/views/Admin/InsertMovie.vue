@@ -80,7 +80,7 @@
             <option
               v-for="release in releases"
               :key="release.id"
-              value="release.releaseYear"
+              :value="release.releaseYear"
             >
               {{ release.releaseYear }}
             </option>

@@ -483,7 +483,7 @@ var render = function() {
                     "option",
                     {
                       key: release.id,
-                      attrs: { value: "release.releaseYear" }
+                      domProps: { value: release.releaseYear }
                     },
                     [
                       _vm._v(
