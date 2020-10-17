@@ -148,7 +148,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.poster[data-v-63cd6604] {\n  margin: 0.5rem 1rem;\n}\n.ellipsis[data-v-63cd6604] {\n  width: 148px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n", ""]);
+exports.push([module.i, "\n.poster[data-v-63cd6604] {\r\n  margin: 0.5rem 1rem;\n}\n.ellipsis[data-v-63cd6604] {\r\n  width: 148px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\n}\r\n", ""]);
 
 // exports
 

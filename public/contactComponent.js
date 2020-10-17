@@ -62,7 +62,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.text-box[data-v-1d91a851] {\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  border: 1px dashed rgba(0, 0, 0, 0.171);\n  margin: 10px 0;\n}\n", ""]);
+exports.push([module.i, "\n.text-box[data-v-1d91a851] {\r\n  width: -webkit-max-content;\r\n  width: -moz-max-content;\r\n  width: max-content;\r\n  border: 1px dashed rgba(0, 0, 0, 0.171);\r\n  margin: 10px 0;\n}\r\n", ""]);
 
 // exports
 

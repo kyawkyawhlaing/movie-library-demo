@@ -103,7 +103,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nform[data-v-12f5395a] {\n  margin-top: 10%;\n  margin-bottom: 10%;\n}\n.btn-crimson[data-v-12f5395a] {\n  background-color: crimson;\n  color: white;\n}\nspan[data-v-12f5395a] {\n  position: relative;\n  top: -30px;\n  left: 3px;\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-12f5395a] {\r\n  margin-top: 10%;\r\n  margin-bottom: 10%;\n}\n.btn-crimson[data-v-12f5395a] {\r\n  background-color: crimson;\r\n  color: white;\n}\nspan[data-v-12f5395a] {\r\n  position: relative;\r\n  top: -30px;\r\n  left: 3px;\n}\r\n", ""]);
 
 // exports
 

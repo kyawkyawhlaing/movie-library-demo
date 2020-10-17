@@ -124,7 +124,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\na[data-v-393c2ce5] {\n  cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\na[data-v-393c2ce5] {\r\n  cursor: pointer;\n}\r\n", ""]);
 
 // exports
 
@@ -365,7 +365,7 @@ var staticRenderFns = [
     return _c("a", { staticClass: "nav-link active bg-danger" }, [
       _c("i", { staticClass: "nav-icon fas fa-tachometer-alt" }),
       _vm._v(" "),
-      _c("p", [_vm._v("\n              Dashboard\n            ")])
+      _c("p", [_vm._v("\r\n              Dashboard\r\n            ")])
     ])
   }
 ]

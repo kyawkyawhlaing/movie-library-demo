@@ -129,16 +129,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     insert: function insert() {
-      var FormData = new formData({
-        movie: this.movie,
-        image: this.selectedFile,
-        rating: this.rating,
-        summary: this.summary,
-        duration: this.duration,
-        cast: this.cast,
-        releaseDate: this.releaseDate
-      });
-      axios.post("/api/insertMovie", FormData)["catch"](function (error) {
+      var formData = new FormData();
+      formData.append("movie", this.movie);
+      formData.append("image", this.selectedFile);
+      formData.append("rating", this.rating);
+      formData.append("summary", this.summary);
+      formData.append("duration", this.duration);
+      formData.append("cast", this.cast);
+      formData.append("releaseDate", this.releaseDate);
+      formData.append("releaseYear", this.releaseYear);
+      axios.post("/api/insertMovie", formData)["catch"](function (error) {
         return console.log(error.response.data);
       });
     },

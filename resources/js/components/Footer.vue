@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <footer class="row">
-      <div class="col-8 offset-2 mt-2 text-white text-center">
+      <div class="col-8 offset-2 my-auto text-white text-center">
         <p>
           &copy;
           <span>K</span>-
@@ -23,6 +23,9 @@ export default {};
 </script>
 
 <style scoped>
+div > .container-fluid {
+  padding-top: 5rem;
+}
 footer {
   background-color: crimson;
 }

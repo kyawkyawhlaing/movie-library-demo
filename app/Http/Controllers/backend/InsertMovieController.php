@@ -47,7 +47,7 @@ class InsertMovieController extends Controller
     {
         $request->validate([
             'movie' => 'required',
-            'image' => 'required|mimes: jpg,jpeg,png|max: 2048',
+            'image' => 'required|file|mimes: jpg,jpeg,png|max: 2048',
         ]);
 
         $name = $request->file('image');
@@ -61,7 +61,7 @@ class InsertMovieController extends Controller
             'duration'  => $request->get('duration'),
             'cast'      => $request->get('cast'),
             'releaseDate'      =>  $request->get('releaseDate'),
-            'user_id'   => auth()->id(),
+            'user_id'   => 1,
         ]);
 
         $name = $request->get('releaseYear');

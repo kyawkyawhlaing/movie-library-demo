@@ -6611,7 +6611,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n*,\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  list-style: 0;\n  font-size: 1em;\n  font-weight: 600;\n}\n.bg-crimson {\n  background: crimson;\n}\n", ""]);
+exports.push([module.i, "\n*,\r\nhtml,\r\nbody {\r\n  margin: 0;\r\n  padding: 0;\r\n  list-style: 0;\r\n  font-size: 1em;\r\n  font-weight: 600;\n}\n.bg-crimson {\r\n  background: crimson;\n}\r\n", ""]);
 
 // exports
 
@@ -6630,7 +6630,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nfooter[data-v-61a7c374] {\n  background-color: crimson;\n}\na[data-v-61a7c374] {\n  color: white;\n}\n.text-purple[data-v-61a7c374] {\n  color: purple;\n}\nspan[data-v-61a7c374] {\n  text-shadow: 5px 5px 5px black;\n}\n\n", ""]);
+exports.push([module.i, "\ndiv > .container-fluid[data-v-61a7c374] {\r\n  padding-top: 5rem;\n}\nfooter[data-v-61a7c374] {\r\n  background-color: crimson;\n}\na[data-v-61a7c374] {\r\n  color: white;\n}\n.text-purple[data-v-61a7c374] {\r\n  color: purple;\n}\nspan[data-v-61a7c374] {\r\n  text-shadow: 5px 5px 5px black;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -6649,7 +6649,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ninput[type=\"search\"][data-v-1d49b7c8] {\n  border: none;\n}\nbutton[data-v-1d49b7c8] {\n  border: none;\n  background-color: transparent;\n  margin: auto 0.5rem;\n}\nbutton > i[data-v-1d49b7c8] {\n  color: crimson;\n  cursor: pointer;\n}\n.searchbox[data-v-1d49b7c8] {\n  width: 100%;\n  height: -webkit-min-content;\n  height: -moz-min-content;\n  height: min-content;\n  background-color: white;\n  border-radius: 25px;\n  margin: auto;\n}\nlabel[data-v-1d49b7c8] {\n  margin: auto 15px;\n}\n@media screen and (max-width: 992px) {\n.searchbox[data-v-1d49b7c8] {\n    width: 350px;\n    margin: 0;\n}\n}\n@media (max-width: 400px) {\n.searchbox[data-v-1d49b7c8] {\n    width: 300px;\n    margin: 0;\n}\ninput[type=\"search\"][data-v-1d49b7c8] {\n    width: 180px;\n}\nbutton[data-v-1d49b7c8] {\n    margin: 0;\n}\n}\n", ""]);
+exports.push([module.i, "\ninput[type=\"search\"][data-v-1d49b7c8] {\r\n  border: none;\n}\nbutton[data-v-1d49b7c8] {\r\n  border: none;\r\n  background-color: transparent;\r\n  margin: auto 0.5rem;\n}\nbutton > i[data-v-1d49b7c8] {\r\n  color: crimson;\r\n  cursor: pointer;\n}\n.searchbox[data-v-1d49b7c8] {\r\n  width: 100%;\r\n  height: -webkit-min-content;\r\n  height: -moz-min-content;\r\n  height: min-content;\r\n  background-color: white;\r\n  border-radius: 25px;\r\n  margin: auto;\n}\nlabel[data-v-1d49b7c8] {\r\n  margin: auto 15px;\n}\n@media screen and (max-width: 992px) {\n.searchbox[data-v-1d49b7c8] {\r\n    width: 350px;\r\n    margin: 0;\n}\n}\n@media (max-width: 400px) {\n.searchbox[data-v-1d49b7c8] {\r\n    width: 300px;\r\n    margin: 0;\n}\ninput[type=\"search\"][data-v-1d49b7c8] {\r\n    width: 180px;\n}\nbutton[data-v-1d49b7c8] {\r\n    margin: 0;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -6668,7 +6668,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navbar-brand[data-v-62ef6e8a] {\n  font-size: 1.5rem;\n  font-weight: bolder;\n}\na[data-v-62ef6e8a] {\n  margin: 0 1.5rem;\n  color: white;\n}\ndiv.navbar-nav[data-v-62ef6e8a] {\n  margin-left: auto;\n}\n.navbar-brand[data-v-62ef6e8a] {\n  font-size: 2.5rem;\n}\n.navbar-brand > span[data-v-62ef6e8a] {\n  color: white;\n}\n.navbar-brand > .text-purple[data-v-62ef6e8a] {\n  color: purple;\n}\n", ""]);
+exports.push([module.i, "\n.navbar-brand[data-v-62ef6e8a] {\r\n  font-size: 1.5rem;\r\n  font-weight: bolder;\n}\na[data-v-62ef6e8a] {\r\n  margin: 0 1.5rem;\r\n  color: white;\n}\ndiv.navbar-nav[data-v-62ef6e8a] {\r\n  margin-left: auto;\n}\n.navbar-brand[data-v-62ef6e8a] {\r\n  font-size: 2.5rem;\n}\n.navbar-brand > span[data-v-62ef6e8a] {\r\n  color: white;\n}\n.navbar-brand > .text-purple[data-v-62ef6e8a] {\r\n  color: purple;\n}\r\n", ""]);
 
 // exports
 
@@ -38602,7 +38602,7 @@ var staticRenderFns = [
       _c("footer", { staticClass: "row" }, [
         _c(
           "div",
-          { staticClass: "col-8 offset-2 mt-2 text-white text-center" },
+          { staticClass: "col-8 offset-2 my-auto text-white text-center" },
           [
             _c("p", [
               _vm._v("\n        ©\n        "),
@@ -54530,8 +54530,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/kyawhlaing/Desktop/Project/laravel/lara-vue-project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/kyawhlaing/Desktop/Project/laravel/lara-vue-project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\KyawHlaing\Desktop\MyProjects\PHP project\movie-library-demo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\KyawHlaing\Desktop\MyProjects\PHP project\movie-library-demo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
