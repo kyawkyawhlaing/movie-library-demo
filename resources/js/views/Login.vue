@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import Axios from "axios";
+import axios from "axios";
+import store from "../store.js";
 export default {
   name: "login",
   data() {
@@ -64,9 +65,10 @@ export default {
             password: this.password,
           })
           .then((response) => {
-            if (response.data.email == this.email)
-              this.$router.push({ name: "Dashboard" });
-            else {
+            if (response.data.email == this.email) {
+              store.email = response.data.email;
+              this.$router.push("/dashboard");
+            } else {
               return (this.errors = response.data.status);
             }
           })
@@ -75,8 +77,8 @@ export default {
           });
       });
     },
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
@@ -84,13 +86,15 @@ form {
   margin-top: 10%;
   margin-bottom: 10%;
 }
+
 .btn-crimson {
   background-color: crimson;
   color: white;
 }
+
 span {
   position: relative;
   top: -30px;
   left: 3px;
 }
-</style>>
+</style>

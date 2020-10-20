@@ -27,9 +27,8 @@
             Home
             <span class="sr-only">(current)</span>
           </router-link>
-          <router-link to="#" class="nav-link text-white">Browse</router-link>
           <router-link to="/contact" class="nav-link text-white">Contact</router-link>
-          <router-link :to="{name: 'Login'}" class="nav-link text-white">Login</router-link>
+          <router-link to="/dashboard" class="nav-link text-white">Login</router-link>
         </div>
       </div>
     </nav>

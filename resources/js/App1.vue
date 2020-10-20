@@ -1,0 +1,69 @@
+<template>
+  <div>
+    <div v-if="$route.meta.requiresAuth !== true && $route.name !== 'NotFound'">
+      <TheNavigation />
+    </div>
+    <router-view :key="$route.path" />
+    <div v-if="$route.path !== '/dashboard' && $route.name !== 'NotFound'">
+      <div class="container-fluid">
+        <footer class="row">
+          <div class="col-8 offset-2 my-auto text-white text-center">
+            <p>
+              &copy;
+              <span>K</span>-
+              <span class="text-success">m</span>
+              <span class="text-white">o</span>
+              <span class="text-secondary">v</span>
+              <span class="text-purple">i</span>
+              <span class="text-primary">e</span>
+              .All rights reserved.
+              <b>Created by KyawHlaing</b>
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import TheNavigation from "./components/TheNavigation.vue";
+import Footer from "./components/Footer.vue";
+
+export default {
+  components: {
+    TheNavigation,
+  },
+};
+</script>
+
+<style>
+*,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  list-style: 0;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.bg-crimson {
+  background: crimson;
+}
+div > .container-fluid {
+  padding-top: 5rem;
+}
+footer {
+  background-color: crimson;
+}
+a {
+  color: white;
+}
+.text-purple {
+  color: purple;
+}
+span {
+  text-shadow: 5px 5px 5px black;
+}
+</style>

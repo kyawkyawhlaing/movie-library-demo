@@ -75,6 +75,7 @@ class InsertMovieController extends Controller
             $input = $request->input('genres');
             //insert resources into database table
             //attach or generate id into pivot table
+            //input values aren't array type
             $arr = explode(",",$input);
             foreach ($arr as $key => $value) {
                 $genre = Genre::where('genre', '=', $value)->firstOrFail();

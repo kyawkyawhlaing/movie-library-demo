@@ -86,11 +86,15 @@
 </template>
 
 <script>
+import store from '../../store.js';
 export default {
   methods: {
     logout() {
       axios.post("/api/logout")
-      .then(() => this.$router.push({name: "Home"}));
+      .then(() => {
+        store.email = null
+        this.$router.push({name: "Home"})
+        });
     },
   },
 };

@@ -11,6 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store.js */ "./resources/js/store.js");
 //
 //
 //
@@ -57,6 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "login",
@@ -71,14 +73,16 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      axios.get("/sanctum/csrf-cookie").then(function (response) {
-        axios.post("/api/login", {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/sanctum/csrf-cookie").then(function (response) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/login", {
           email: _this.email,
           password: _this.password
         }).then(function (response) {
-          if (response.data.email == _this.email) _this.$router.push({
-            name: "Dashboard"
-          });else {
+          if (response.data.email == _this.email) {
+            _store_js__WEBPACK_IMPORTED_MODULE_1__["default"].email = response.data.email;
+
+            _this.$router.push("/dashboard");
+          } else {
             return _this.errors = response.data.status;
           }
         })["catch"](function (error) {

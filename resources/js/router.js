@@ -1,70 +1,96 @@
-window.Vue = require('vue');
-import Axios from 'axios';
-import VueRouter from 'vue-router';
+window.Vue = require("vue");
+import VueRouter from "vue-router";
+import store from "./store.js";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/',
-        name: 'Home',
-        component: () => import(
-            /* webpackChunkName: "homeComponent" */
-            './views/Home.vue'
-        )
+        path: "/",
+        name: "Home",
+        component: () =>
+            import(
+                /* webpackChunkName: "homeComponent" */
+                "./views/Home.vue"
+            )
     },
     {
-        path: '/contact',
-        name: 'Contact',
-        component: () => import(
-            /* webpackChunkName: "contactComponent" */
-            './views/Contact.vue'
-        )
+        path: "/contact",
+        name: "Contact",
+        component: () =>
+            import(
+                /* webpackChunkName: "contactComponent" */
+                "./views/Contact.vue"
+            )
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: () => import(
-            /* webpackChunkName: "login" */
-            './views/Login.vue'
-        )
+        path: "/login",
+        name: "Login",
+        component: () =>
+            import(
+                /* webpackChunkName: "login" */
+                "./views/Login.vue"
+            )
     },
     {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import(
-            /* webpackChunkName: "Dashboard" */
-            './views/Admin/Dashboard.vue'
-        ),
-        beforeEnter: function (to, from, next) {
-            axios.get('/api/authenticated')
-                .then(() => next())
-                .catch(() => { return next({ name: "Home" }); })
-        }
+        path: "/test",
+        name: "Test",
+        component: () =>
+            import(
+                /* webpackChunkname: "123" */
+                "./views/Test.vue"
+            )
     },
     {
-        path: "/insertmovie",
-        name: "InsertMovie",
-        component: () => import(
-            /*webpackChunkname: "InsertMovie" */
-            './views/Admin/InsertMovie.vue'
-        )
+        path: "/dashboard",
+        name: "Dashboard",
+        component: () =>
+            import(
+                /* webpackChunkName: "Dashboard" */
+                "./views/Admin/Dashboard.vue"
+            ),
+        children: [
+            {
+                path: "/insertmovie",
+                name: "InsertMovie",
+                component: () =>
+                    import(
+                        /*webpackChunkname: "InsertMovie" */
+                        "./views/Admin/InsertMovie.vue"
+                    )
+            }
+        ],
+        meta: { requiresAuth: true }
     },
     {
-        path: '/404',
-        alias: '*',
-        name: 'NotFound',
-        component: () => import(
-            /* webpackChunkName: "404error" */
-            './views/NotFound.vue'
-        )
+        path: "/404",
+        alias: "*",
+        name: "NotFound",
+        component: () =>
+            import(
+                /* webpackChunkName: "404error" */
+                "./views/NotFound.vue"
+            )
     }
 ];
 
 const router = new VueRouter({
-    mode: 'history',
+    mode: "history",
     base: process.env.BASE_URL,
     routes
-})
-
-export default router
+});
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!store.email) {
+            console.log(store.email);
+            next({
+                name: "Login"
+            });
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+export default router;

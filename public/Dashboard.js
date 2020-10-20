@@ -9,6 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store.js */ "./resources/js/store.js");
 //
 //
 //
@@ -96,13 +97,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
       var _this = this;
 
       axios.post("/api/logout").then(function () {
-        return _this.$router.push({
+        _store_js__WEBPACK_IMPORTED_MODULE_0__["default"].email = null;
+
+        _this.$router.push({
           name: "Home"
         });
       });

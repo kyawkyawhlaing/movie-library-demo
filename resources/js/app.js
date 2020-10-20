@@ -1,5 +1,5 @@
 
-import View from './App.vue';
+import View from './App1.vue';
 import router from './router';
 require('./bootstrap');
 
