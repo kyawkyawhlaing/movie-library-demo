@@ -1,13 +1,14 @@
+import View from "./App1.vue";
+import router from "./router";
+import Vuetify from "../plugins/vuetify";
+require("./bootstrap");
 
-import View from './App1.vue';
-import router from './router';
-require('./bootstrap');
+window.Vue = require("vue");
 
-window.Vue = require('vue');
-
-Vue.component('v-search', require('./components/Searchbox.vue').default);
+Vue.component("v-search", require("./components/Searchbox.vue").default);
 
 const app = new Vue({
     router,
-    render: h => h(View),
-}).$mount('#app');
+    vuetify: Vuetify,
+    render: h => h(View)
+}).$mount("#app");

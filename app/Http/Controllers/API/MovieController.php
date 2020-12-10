@@ -17,7 +17,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return MovieResource::collection(Movie::orderBy('id','desc')->paginate(9));
+        return MovieResource::collection(Movie::orderBy('id','desc')->paginate(12));
     }
 
     /**

@@ -8,6 +8,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('movie','API\MovieController');
+Route::get('getAllmovies','API\MovieAllController@showAll');
 Route::post('login', 'Auth\LoginController@vuelogin');
 Route::post('logout','Auth\LoginController@logout');
 Route::get('insertMovie','backend\InsertMovieController@index');

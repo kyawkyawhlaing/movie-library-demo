@@ -1,13 +1,20 @@
 <template>
-  <div class="searchbox">
-    <form>
-      <label for="searchbox">Search</label>
-      <input type="search" name="search" id="searchbox" v-model="search" />
-      <button type="button" @click="getData">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-  </div>
+  <v-autocomplete
+    v-model="model"
+    :items="items"
+    cache-items
+    :loading="isLoading"
+    :search-input.sync="search"
+    hide-no-data
+    hide-selected
+    prepend-icon="mdi-movie-search"
+    label="Search Movie"
+    v-on:keydown.enter="pathToDetails"
+    clearable
+    flat
+    return-object
+  >
+  </v-autocomplete>
 </template>
 
 <script>
@@ -15,59 +22,51 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      search: "",
+      isLoading: false,
+      model: null,
+      items: [],
+      search: null,
+      states: [],
+      result: null
     };
   },
-  methods: {
-    getData() {
-      axios
-        .get("api/movie")
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+  watch: {
+    search(val) {
+      val && val !== this.model && this.querySelections(val);
     },
+  },
+  created() {
+    axios.get("/api/getAllmovies").then((res) => {
+      const movies = res.data.movies;
+      movies.map((movie) => {
+        return this.states.push(movie.movie);
+      });
+    });
+  },
+  methods: {
+    querySelections(v) {
+      this.loading = true;
+      // Simulated ajax query
+      setTimeout(() => {
+        this.items = this.states.filter((e) => {
+          return (e || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        this.loading = false;
+      }, 500);
+    },
+    pathToDetails() {
+      axios.get("/api/getAllmovies").then((res) => {
+        const matchRes = res.data.movies;
+        matchRes.map((match) => {
+          if (match.movie == this.model) return this.result = match.id;
+        });
+        this.$router.push({ name: "MovieDetails", params: { id: this.result } });
+      });
+    },
+
   },
 };
 </script>
 
-<style scoped>
-input[type="search"] {
-  border: none;
-}
-button {
-  border: none;
-  background-color: transparent;
-  margin: auto 0.5rem;
-}
-button > i {
-  color: crimson;
-  cursor: pointer;
-}
-.searchbox {
-  width: 100%;
-  height: min-content;
-  background-color: white;
-  border-radius: 25px;
-  margin: auto;
-}
-label {
-  margin: auto 15px;
-}
-@media screen and (max-width: 992px) {
-  .searchbox {
-    width: 350px;
-    margin: 0;
-  }
-}
-@media (max-width: 400px) {
-  .searchbox {
-    width: 300px;
-    margin: 0;
-  }
-  input[type="search"] {
-    width: 180px;
-  }
-  button {
-    margin: 0;
-  }
-}
+<style>
 </style>

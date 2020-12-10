@@ -33,13 +33,13 @@ const routes = [
             )
     },
     {
-        path: "/test",
-        name: "Test",
+        path: '/movieDetails/:id',
+        name: 'MovieDetails',
         component: () =>
-            import(
-                /* webpackChunkname: "123" */
-                "./views/Test.vue"
-            )
+        import(
+            /* webpackChunkname: "123" */
+            "./views/MovieDetails.vue"
+        )
     },
     {
         path: "/dashboard",
@@ -57,7 +57,8 @@ const routes = [
                     import(
                         /*webpackChunkname: "InsertMovie" */
                         "./views/Admin/InsertMovie.vue"
-                    )
+                    ),
+                meta: { requiresAuth: true }
             }
         ],
         meta: { requiresAuth: true }

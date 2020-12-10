@@ -2,7 +2,7 @@
   <div>
     <form
       @submit.prevent="insert"
-      class="col-6 mx-auto"
+      class="col-8 mx-auto"
       enctype="multipart/form-data"
     >
       <div class="form-row">

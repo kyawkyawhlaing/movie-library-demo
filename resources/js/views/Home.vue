@@ -1,61 +1,105 @@
 <template>
-  <div class="mb-5 mx-5 row">
-    <h2 class="col-12 my-5">Movie</h2>
-    <div class="row col-lg-8">
-      <div class="poster col-md-3" v-for="item in items" :key="item.movie">
-        <img :src="'./storage/'+ item.image" width="100%" height="260px" :alt="item.movie" />
-        <p class="ellipsis">
-          {{ item.movie}}
-          <br />
-          &starf; {{item.rating}}
-        </p>
-      </div>
+  <div class="home">
+    <v-carousel
+      height="400"
+      hide-delimiter-background
+      show-arrows-on-hover
+      cycle
+    >
+      <v-carousel-item v-for="(slide, i) in slides" :key="i">
+        <v-sheet :color="colors[i]" height="100%">
+          <v-row class="fill-height" align="center" justify="center">
+            <div class="display-3">{{ slide }} Slide</div>
+          </v-row>
+        </v-sheet>
+      </v-carousel-item>
+    </v-carousel>
+    <v-container class="grey lighten-5">
+      <v-row class="mx-0">
+        <v-col cols="12" sm="3" md="3" v-for="item in items" :key="item.id">
+          <v-card class="mx-auto" :loading="isloading">
+            <template slot="progress">
+              <v-progress-linear
+                indeterminate
+                height="6"
+                color="deep-purple"
+              ></v-progress-linear>
+            </template>
+            <!-- https://cdn.vuetifyjs.com/images/cards/sunshine.jpg -->
+            <v-img
+              :src="'./storage/'+ item.image"
+              height="300"
+              :alt="item.movie"
+              cover
+            ></v-img>
+            <v-card-title class="mx-auto">{{item.movie}}</v-card-title>
+            <v-card-subtitle class="font-weight-bold">IMDb {{item.rating}}</v-card-subtitle>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-btn
+                :to="{name: 'MovieDetails',params: { id: item.id}}"
+                class="my-2"
+                color="teal accent-4"
+                @click="reserve"
+                text
+                >Explore</v-btn
+              >
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+    <div class="text-center">
+      <v-pagination
+        v-model="meta.current_page"
+        :length="meta.last_page"
+        :total-visible="7"
+        :value="meta.current_page"
+        @input="getMovie"
+        color="teal accent-3"
+        circle
+      ></v-pagination>
     </div>
-    <div class="col-lg-4 row mb-5">
-      <div class="col-12">
-        <div class="k-badge">2020</div>
-        <div class="k-badge">2020</div>
-        <div class="k-badge">2020</div>
-        <div class="k-badge">2020</div>
-        <div class="k-badge">2020</div>
-        <div class="k-badge">2020</div>
-        <div class="k-badge">2020</div>
-      </div>
-      <div class="col-12">
-        <div class="k-badge">Adventure</div>
-        <div class="k-badge">Adventure</div>
-        <div class="k-badge">Adventure</div>
-        <div class="k-badge">Adventure</div>
-        <div class="k-badge">Adventure</div>
-        <div class="k-badge">Adventure</div>
-      </div>
-    </div>
-    <pagination :meta="meta" @pagination="getMovie" />
   </div>
 </template>
 
 <script>
-import pagination from "../components/Pagination";
 export default {
-  components: {
-    pagination,
-  },
+  name: "Home",
+  components: {},
   data() {
     return {
-      items: null,
+      items: "",
       meta: {},
+      show: false,
+      isloading: false,
+      colors: [
+        "indigo",
+        "warning",
+        "pink darken-2",
+        "red lighten-1",
+        "deep-purple accent-4",
+      ],
+      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
+      current_page: 1,
     };
   },
   created() {
     this.getMovie();
   },
   methods: {
+    reserve() {
+      this.isloading = true;
+      setTimeout(() => (this.isloading = false), 2000);
+    },
     getMovie(page) {
       axios
-        .get("/api/movie", {
-          params: { page },
+        .get("/api/movie",{
+          params: {page}
         })
         .then((response) => {
+          console.log(page);
           this.items = response.data.data;
           this.meta = response.data.meta;
         });
@@ -63,15 +107,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.poster {
-  margin: 0.5rem 1rem;
-}
-.ellipsis {
-  width: 148px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-</style>
