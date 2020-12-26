@@ -96,7 +96,7 @@
           @change="selected"
         />
       </div>
-      <button type="submit" class="btn btn-danger my-3">Insert</button>
+      <button type="submit" class="btn btn-success my-3">Insert</button>
     </form>
   </div>
 </template>

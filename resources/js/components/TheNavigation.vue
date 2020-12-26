@@ -28,18 +28,20 @@
 
       <v-spacer class="hidden-md-and-down"></v-spacer>
 
-      <v-col cols="3" class="mt-7 hidden-md-and-down"> <v-search /> </v-col>
-      <v-col cols="3" class="hidden-md-and-down">
-        <v-btn class="float-right" :to="{name: 'Login'}" text>
-          <span class="mr-2">Login</span>
-          <v-icon>mdi-account-circle-outline</v-icon>
-        </v-btn>
-        <v-btn class="float-right" :to="{name: 'Home'}" text>
-          <span class="mr-2">Home</span>
-          <v-icon>mdi-home-outline</v-icon>
-        </v-btn>
-      </v-col>
+        <v-tabs hide-slider right>
+
+          <v-tab class="hidden-sm-and-down" tag><v-search class="mt-7"/></v-tab>
+          <v-tab :to="{ name: 'Home' }" class="white--text font-weight-bold hidden-md-and-down">
+            Home
+            <v-icon right>mdi-home</v-icon>
+          </v-tab>
+          <v-tab :to="{ name: 'Login' }" class="white--text font-weight-bold hidden-md-and-down">
+            Login
+            <v-icon right>mdi-account-circle</v-icon>
+          </v-tab>
+        </v-tabs>
     </v-app-bar>
+
     <v-navigation-drawer v-model="drawer" absolute temporary dense dark>
       <v-list>
         <v-list-item>
@@ -51,15 +53,15 @@
         <v-divider></v-divider>
       </v-list>
       <v-list nav>
-        <v-list-item :to="{name: 'Home'}" link>
+        <v-list-item :to="{ name: 'Home' }" link>
           <v-icon left>mdi-view-dashboard</v-icon>
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item :to="{name: 'Contact'}" link>
+        <v-list-item :to="{ name: 'Contact' }" link>
           <v-icon left>mdi-contacts-outline</v-icon>
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
-        <v-list-item :to="{name: 'Login'}" link>
+        <v-list-item :to="{ name: 'Login' }" link>
           <v-icon left>mdi-account-circle-outline</v-icon>
           <v-list-item-title>Login</v-list-item-title>
         </v-list-item>
@@ -77,9 +79,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.v-btn {
-  border: none;
-}
-</style>

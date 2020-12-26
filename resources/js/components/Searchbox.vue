@@ -7,12 +7,14 @@
     :search-input.sync="search"
     hide-no-data
     hide-selected
-    prepend-icon="mdi-movie-search"
+    append-icon="mdi-movie-search"
     label="Search Movie"
     v-on:keydown.enter="pathToDetails"
     clearable
     flat
     return-object
+    rounded
+    solo-inverted
   >
   </v-autocomplete>
 </template>

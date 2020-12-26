@@ -503,7 +503,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn btn-danger my-3", attrs: { type: "submit" } },
+          { staticClass: "btn btn-success my-3", attrs: { type: "submit" } },
           [_vm._v("Insert")]
         )
       ]

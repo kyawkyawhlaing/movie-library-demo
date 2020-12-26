@@ -4,7 +4,7 @@
       <v-col cols="12" sm="6" md="6">
         <v-card width="600" height="auto" flat>
           <v-img
-            src="./images/construction-illustration_11345-1.jpg"
+            src="./images/4022196.jpg"
             alt="Abstract vector created by pch.vector - www.freepik.com"
             contain
           ></v-img>
@@ -45,13 +45,12 @@
             <v-btn
             @click="login"
               color="success"
-              class="mr-4"
+              class="my-5 mx-5"
               form="login-form"
               :loading="loader"
             >
               Login
             </v-btn>
-
           </v-form>
         </v-card>
       </v-col>
@@ -80,7 +79,6 @@ export default {
         (v) => !!v || "E-mail is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
-
     };
   },
   methods: {
@@ -95,7 +93,7 @@ export default {
           })
           .then((response) => {
             if (response.data.email == this.email) {
-              store.email = response.data.email;
+              localStorage.email = response.data.email;
               this.loader = false;
               this.$router.push("/dashboard");
             } else {
@@ -104,6 +102,7 @@ export default {
           })
           .catch((error) => {
             this.errors = error.response.data.errors;
+            this.loader = false;
           });
       });
     },
@@ -115,11 +114,6 @@ export default {
 form {
   margin-top: 10%;
   margin-bottom: 10%;
-}
-
-.btn-crimson {
-  background-color: crimson;
-  color: white;
 }
 
 span {

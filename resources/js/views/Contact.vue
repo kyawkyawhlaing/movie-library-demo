@@ -1,16 +1,17 @@
 <template>
   <v-container>
     <v-row justify="space-around">
-      <v-cols cols="12" sm="6" md="7">
+      <v-col cols="12" sm="6" md="7">
         <v-img
+          class="hidden-sm-and-down"
           width="600"
           min-width="300"
           src="./images/18310.jpg"
           alt="Credit: rawpixel.com"
           contact
         ></v-img>
-      </v-cols>
-      <v-cols cols="12" sm="6" md="5">
+      </v-col>
+      <v-col cols="12" sm="6" md="5">
         <div class="display-2 text--secondary mx-auto">Contact Me</div>
         <v-divider></v-divider>
         <v-form>
@@ -21,7 +22,7 @@
                 :rules="rules.nameRules"
                 counter="15"
                 label="Name"
-                prepend-icon="mdi-account-outline"
+                append-icon="mdi-account-outline"
                 outlined
               ></v-text-field>
             </v-col>
@@ -30,7 +31,7 @@
                 v-model="email"
                 :rules="rules.emailRules"
                 label="Email"
-                prepend-icon="mdi-email-outline"
+                append-icon="mdi-email-outline"
                 outlined
               >
               </v-text-field>
@@ -39,7 +40,7 @@
           <v-text-field
             v-model="tel"
             :rules="rules.teleRules"
-            prepend-icon="mdi-cellphone-android"
+            append-icon="mdi-cellphone-android"
             label="Telephone"
             outlined
           ></v-text-field>
@@ -51,12 +52,16 @@
             prepend-icon="mdi-format-paragraph"
             rows="3"
           ></v-textarea>
-          <v-btn class="ml-6" color="success" :loading="loader1" @click="loader = 'loader1'"
+          <v-btn
+            class="ml-6"
+            color="success"
+            :loading="loader1"
+            @click="loader = 'loader1'"
             >Submit
             <v-icon right dark> mdi-checkbox-marked-circle-outline </v-icon>
           </v-btn>
         </v-form>
-      </v-cols>
+      </v-col>
     </v-row>
   </v-container>
 </template>

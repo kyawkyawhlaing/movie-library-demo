@@ -72,6 +72,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -134,10 +139,11 @@ var render = function() {
         { attrs: { justify: "space-around" } },
         [
           _c(
-            "v-cols",
+            "v-col",
             { attrs: { cols: "12", sm: "6", md: "7" } },
             [
               _c("v-img", {
+                staticClass: "hidden-sm-and-down",
                 attrs: {
                   width: "600",
                   "min-width": "300",
@@ -151,7 +157,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-cols",
+            "v-col",
             { attrs: { cols: "12", sm: "6", md: "5" } },
             [
               _c("div", { staticClass: "display-2 text--secondary mx-auto" }, [
@@ -175,7 +181,7 @@ var render = function() {
                               rules: _vm.rules.nameRules,
                               counter: "15",
                               label: "Name",
-                              "prepend-icon": "mdi-account-outline",
+                              "append-icon": "mdi-account-outline",
                               outlined: ""
                             },
                             model: {
@@ -198,7 +204,7 @@ var render = function() {
                             attrs: {
                               rules: _vm.rules.emailRules,
                               label: "Email",
-                              "prepend-icon": "mdi-email-outline",
+                              "append-icon": "mdi-email-outline",
                               outlined: ""
                             },
                             model: {
@@ -219,7 +225,7 @@ var render = function() {
                   _c("v-text-field", {
                     attrs: {
                       rules: _vm.rules.teleRules,
-                      "prepend-icon": "mdi-cellphone-android",
+                      "append-icon": "mdi-cellphone-android",
                       label: "Telephone",
                       outlined: ""
                     },

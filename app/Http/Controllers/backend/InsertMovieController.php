@@ -63,7 +63,7 @@ class InsertMovieController extends Controller
             'releaseDate'      =>  $request->get('releaseDate'),
             'user_id'   => 1,
         ]);
-
+ 
         $name = $request->get('releaseYear');
         // if property is not found in the collection instance,return 404 page
         $release_year = Release::where('releaseYear', '=', $name)->firstOrFail();

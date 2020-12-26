@@ -1,6 +1,5 @@
 window.Vue = require("vue");
 import VueRouter from "vue-router";
-import store from "./store.js";
 
 Vue.use(VueRouter);
 
@@ -82,8 +81,8 @@ const router = new VueRouter({
 });
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!store.email) {
-            console.log(store.email);
+        if (!localStorage.email) {
+            console.log(localStorage.email);
             next({
                 name: "Login"
             });

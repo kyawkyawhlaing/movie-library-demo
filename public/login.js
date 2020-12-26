@@ -72,7 +72,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -114,7 +113,7 @@ __webpack_require__.r(__webpack_exports__);
           password: _this.password
         }).then(function (response) {
           if (response.data.email == _this.email) {
-            _store_js__WEBPACK_IMPORTED_MODULE_1__["default"].email = response.data.email;
+            localStorage.email = response.data.email;
             _this.loader = false;
 
             _this.$router.push("/dashboard");
@@ -123,6 +122,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         })["catch"](function (error) {
           _this.errors = error.response.data.errors;
+          _this.loader = false;
         });
       });
     }
@@ -143,7 +143,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nform[data-v-12f5395a] {\r\n  margin-top: 10%;\r\n  margin-bottom: 10%;\n}\n.btn-crimson[data-v-12f5395a] {\r\n  background-color: crimson;\r\n  color: white;\n}\nspan[data-v-12f5395a] {\r\n  position: relative;\r\n  top: -30px;\r\n  left: 3px;\n}\r\n", ""]);
+exports.push([module.i, "\nform[data-v-12f5395a] {\r\n  margin-top: 10%;\r\n  margin-bottom: 10%;\n}\nspan[data-v-12f5395a] {\r\n  position: relative;\r\n  top: -30px;\r\n  left: 3px;\n}\r\n", ""]);
 
 // exports
 
@@ -212,7 +212,7 @@ var render = function() {
                 [
                   _c("v-img", {
                     attrs: {
-                      src: "./images/construction-illustration_11345-1.jpg",
+                      src: "./images/4022196.jpg",
                       alt:
                         "Abstract vector created by pch.vector - www.freepik.com",
                       contain: ""
@@ -294,7 +294,7 @@ var render = function() {
                       _c(
                         "v-btn",
                         {
-                          staticClass: "mr-4",
+                          staticClass: "my-5 mx-5",
                           attrs: {
                             color: "success",
                             form: "login-form",
@@ -324,6 +324,21 @@ var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/js/store.js":
+/*!*******************************!*\
+  !*** ./resources/js/store.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  email: null
+});
 
 /***/ }),
 
