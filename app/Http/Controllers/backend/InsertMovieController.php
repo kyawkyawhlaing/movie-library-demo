@@ -82,7 +82,7 @@ class InsertMovieController extends Controller
                 $movie->genres()->attach($genre->id);
             }
         }
-        return response()->json($movie, 201);
+        return response()->json(["message" => "Created Successfully!"], 201);
     }
 
     /**

@@ -17,7 +17,8 @@
     <v-container class="grey lighten-5">
       <v-row class="mx-0">
         <v-col cols="12" sm="3" md="3" v-for="item in items" :key="item.id">
-          <v-card class="mx-auto" :loading="isloading">
+          <v-skeleton-loader type="card-avatar" v-if="lazyloading"></v-skeleton-loader>
+          <v-card v-else class="mx-auto" :loading="isloading">
             <template slot="progress">
               <v-progress-linear
                 indeterminate
@@ -50,7 +51,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <div class="text-center">
+    <div class="text-center mb-7">
       <v-pagination
         v-model="meta.current_page"
         :length="meta.last_page"
@@ -74,6 +75,7 @@ export default {
       meta: {},
       show: false,
       isloading: false,
+      lazyloading: true,
       colors: [
         "indigo",
         "warning",
@@ -88,6 +90,9 @@ export default {
   created() {
     this.getMovie();
   },
+  mounted() {
+    setTimeout(() => (this.lazyloading = false),5000);
+  },
   methods: {
     reserve() {
       this.isloading = true;
@@ -99,7 +104,6 @@ export default {
           params: {page}
         })
         .then((response) => {
-          console.log(page);
           this.items = response.data.data;
           this.meta = response.data.meta;
         });

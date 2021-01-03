@@ -50,6 +50,16 @@ const routes = [
             ),
         children: [
             {
+                path: "/dashboardview",
+                name: "DashboardView",
+                component: () =>
+                import(
+                    /*webpackChunkname: "DashboardView" */
+                    "./views/Admin/DashboardView.vue"
+                ),
+            meta: { requiresAuth: true }
+            },
+            {
                 path: "/insertmovie",
                 name: "InsertMovie",
                 component: () =>
@@ -81,8 +91,7 @@ const router = new VueRouter({
 });
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!localStorage.email) {
-            console.log(localStorage.email);
+        if (!localStorage.user) {
             next({
                 name: "Login"
             });

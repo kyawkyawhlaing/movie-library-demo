@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-app-bar app class="success">
+    <v-app-bar app class="light-blue darken-3">
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
@@ -42,26 +42,26 @@
         </v-tabs>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute temporary dense dark>
+    <v-navigation-drawer v-model="drawer" class="success" absolute temporary right dense light>
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
             <v-img src="./images/rect48.png"></v-img>
           </v-list-item-avatar>
-          <v-list-item-title class="mx-0"> Catalogue </v-list-item-title>
+          <v-list-item-title class="mx-0 white--text"> Catalogue </v-list-item-title>
         </v-list-item>
         <v-divider></v-divider>
       </v-list>
       <v-list nav>
-        <v-list-item :to="{ name: 'Home' }" link>
+        <v-list-item :to="{ name: 'Home' }" class="white--text" link>
           <v-icon left>mdi-view-dashboard</v-icon>
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
-        <v-list-item :to="{ name: 'Contact' }" link>
+        <v-list-item :to="{ name: 'Contact' }" class="white--text" link>
           <v-icon left>mdi-contacts-outline</v-icon>
           <v-list-item-title>Contact</v-list-item-title>
         </v-list-item>
-        <v-list-item :to="{ name: 'Login' }" link>
+        <v-list-item :to="{ name: 'Login' }" class="white--text" link>
           <v-icon left>mdi-account-circle-outline</v-icon>
           <v-list-item-title>Login</v-list-item-title>
         </v-list-item>

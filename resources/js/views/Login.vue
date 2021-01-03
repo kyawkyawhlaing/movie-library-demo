@@ -4,24 +4,22 @@
       <v-col cols="12" sm="6" md="6">
         <v-card width="600" height="auto" flat>
           <v-img
+            class="hidden-md-and-down"
             src="./images/4022196.jpg"
             alt="Abstract vector created by pch.vector - www.freepik.com"
             contain
           ></v-img>
         </v-card>
       </v-col>
-      <v-col cols="12" sm="6" md="6">
+      <v-col class="my-auto" cols="12" sm="6" md="6">
+        <v-alert v-if="error"  type="error" dense text>{{error}}</v-alert>
         <v-card class="mx-auto" width="300" flat>
           <div class="display-2 text-center">LOGIN</div>
           <p class="title text-center text--secondary">
             Welcome to The V-Catalogue
           </p>
 
-          <v-form
-            ref="form"
-            id="login-form"
-            lazy-validation
-          >
+          <v-form ref="form" id="login-form" lazy-validation>
             <v-text-field
               v-model="email"
               :rules="emailRules"
@@ -43,9 +41,9 @@
             ></v-text-field>
 
             <v-btn
-            @click="login"
-              color="success"
-              class="my-5 mx-5"
+              @click="login"
+              color="light-blue darken-3"
+              class="my-5 mx-5 white--text"
               form="login-form"
               :loading="loader"
             >
@@ -60,13 +58,13 @@
 
 <script>
 import axios from "axios";
-import store from "../store.js";
+
 export default {
   name: "login",
   data() {
     return {
-      email: "",
-      password: "",
+      email: "user@email.com",
+      password: "password",
       errors: null,
       show1: false,
       loader: false,
@@ -81,28 +79,28 @@ export default {
       ],
     };
   },
+  computed: {
+    error() {
+      return this.$store.state.error;
+    },
+  },
   methods: {
     login() {
       this.$refs.form.validate();
       this.loader = true;
-      axios.get("/sanctum/csrf-cookie").then((response) => {
-        axios
-          .post("/api/login", {
+      axios.get("/sanctum/csrf-cookie").then(() => {
+        this.$store
+          .dispatch("login", {
             email: this.email,
             password: this.password,
           })
-          .then((response) => {
-            if (response.data.email == this.email) {
-              localStorage.email = response.data.email;
-              this.loader = false;
-              this.$router.push("/dashboard");
+          .then(() => {
+            if (this.$store.state.user) {
+              this.$router.push("/dashboard")
+              this.loader = false
             } else {
-              return (this.errors = response.data.status);
+              this.loader = false
             }
-          })
-          .catch((error) => {
-            this.errors = error.response.data.errors;
-            this.loader = false;
           });
       });
     },

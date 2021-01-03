@@ -75,6 +75,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   components: {},
@@ -84,6 +85,7 @@ __webpack_require__.r(__webpack_exports__);
       meta: {},
       show: false,
       isloading: false,
+      lazyloading: true,
       colors: ["indigo", "warning", "pink darken-2", "red lighten-1", "deep-purple accent-4"],
       slides: ["First", "Second", "Third", "Fourth", "Fifth"],
       current_page: 1
@@ -92,26 +94,32 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getMovie();
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    setTimeout(function () {
+      return _this.lazyloading = false;
+    }, 5000);
+  },
   methods: {
     reserve: function reserve() {
-      var _this = this;
+      var _this2 = this;
 
       this.isloading = true;
       setTimeout(function () {
-        return _this.isloading = false;
+        return _this2.isloading = false;
       }, 2000);
     },
     getMovie: function getMovie(page) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/api/movie", {
         params: {
           page: page
         }
       }).then(function (response) {
-        console.log(page);
-        _this2.items = response.data.data;
-        _this2.meta = response.data.meta;
+        _this3.items = response.data.data;
+        _this3.meta = response.data.meta;
       });
     }
   }
@@ -191,76 +199,80 @@ var render = function() {
                 "v-col",
                 { key: item.id, attrs: { cols: "12", sm: "3", md: "3" } },
                 [
-                  _c(
-                    "v-card",
-                    {
-                      staticClass: "mx-auto",
-                      attrs: { loading: _vm.isloading }
-                    },
-                    [
-                      _c(
-                        "template",
-                        { slot: "progress" },
-                        [
-                          _c("v-progress-linear", {
-                            attrs: {
-                              indeterminate: "",
-                              height: "6",
-                              color: "deep-purple"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("v-img", {
-                        attrs: {
-                          src: "./storage/" + item.image,
-                          height: "300",
-                          alt: item.movie,
-                          cover: ""
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-card-title", { staticClass: "mx-auto" }, [
-                        _vm._v(_vm._s(item.movie))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-subtitle",
-                        { staticClass: "font-weight-bold" },
-                        [_vm._v("IMDb " + _vm._s(item.rating))]
-                      ),
-                      _vm._v(" "),
-                      _c("v-divider"),
-                      _vm._v(" "),
-                      _c(
-                        "v-card-actions",
+                  _vm.lazyloading
+                    ? _c("v-skeleton-loader", {
+                        attrs: { type: "card-avatar" }
+                      })
+                    : _c(
+                        "v-card",
+                        {
+                          staticClass: "mx-auto",
+                          attrs: { loading: _vm.isloading }
+                        },
                         [
                           _c(
-                            "v-btn",
-                            {
-                              staticClass: "my-2",
-                              attrs: {
-                                to: {
-                                  name: "MovieDetails",
-                                  params: { id: item.id }
-                                },
-                                color: "teal accent-4",
-                                text: ""
-                              },
-                              on: { click: _vm.reserve }
-                            },
-                            [_vm._v("Explore")]
+                            "template",
+                            { slot: "progress" },
+                            [
+                              _c("v-progress-linear", {
+                                attrs: {
+                                  indeterminate: "",
+                                  height: "6",
+                                  color: "deep-purple"
+                                }
+                              })
+                            ],
+                            1
                           ),
                           _vm._v(" "),
-                          _c("v-spacer")
+                          _c("v-img", {
+                            attrs: {
+                              src: "./storage/" + item.image,
+                              height: "300",
+                              alt: item.movie,
+                              cover: ""
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("v-card-title", { staticClass: "mx-auto" }, [
+                            _vm._v(_vm._s(item.movie))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-subtitle",
+                            { staticClass: "font-weight-bold" },
+                            [_vm._v("IMDb " + _vm._s(item.rating))]
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "my-2",
+                                  attrs: {
+                                    to: {
+                                      name: "MovieDetails",
+                                      params: { id: item.id }
+                                    },
+                                    color: "teal accent-4",
+                                    text: ""
+                                  },
+                                  on: { click: _vm.reserve }
+                                },
+                                [_vm._v("Explore")]
+                              ),
+                              _vm._v(" "),
+                              _c("v-spacer")
+                            ],
+                            1
+                          )
                         ],
-                        1
+                        2
                       )
-                    ],
-                    2
-                  )
                 ],
                 1
               )
@@ -273,7 +285,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "text-center" },
+        { staticClass: "text-center mb-7" },
         [
           _c("v-pagination", {
             attrs: {
@@ -329,6 +341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VPagination */ "./node_modules/vuetify/lib/components/VPagination/index.js");
 /* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
 /* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
+/* harmony import */ var vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VSkeletonLoader */ "./node_modules/vuetify/lib/components/VSkeletonLoader/index.js");
 
 
 
@@ -365,7 +378,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__["VImg"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_10__["VPagination"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__["VSheet"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__["VImg"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_10__["VPagination"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__["VSheet"],VSkeletonLoader: vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_13__["VSkeletonLoader"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"]})
 
 
 /* hot reload */

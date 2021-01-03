@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
       this[l] = !this[l];
       setTimeout(function () {
         return _this[l] = false;
-      }, 3000);
+      }, 2000);
       this.loader = null;
     }
   }

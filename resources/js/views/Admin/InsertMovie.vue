@@ -5,6 +5,7 @@
       class="col-8 mx-auto"
       enctype="multipart/form-data"
     >
+      <v-alert v-if="msg" color="green" type="success" dismissible>{{ msg }}</v-alert>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="Movie">Movie</label>
@@ -116,22 +117,24 @@ export default {
       summary: "",
       selectedFile: null,
       movieGen: [],
+      msg: null,
     };
   },
   methods: {
     insert() {
       let formData = new FormData();
-          formData.append("movie",this.movie)
-          formData.append("image",this.selectedFile)
-          formData.append("rating",this.rating)
-          formData.append("summary",this.summary)
-          formData.append("duration",this.duration)
-          formData.append("cast",this.cast)
-          formData.append("releaseDate",this.releaseDate)
-          formData.append("releaseYear",this.releaseYear)
-          formData.append("genres",this.movieGen)
+      formData.append("movie", this.movie);
+      formData.append("image", this.selectedFile);
+      formData.append("rating", this.rating);
+      formData.append("summary", this.summary);
+      formData.append("duration", this.duration);
+      formData.append("cast", this.cast);
+      formData.append("releaseDate", this.releaseDate);
+      formData.append("releaseYear", this.releaseYear);
+      formData.append("genres", this.movieGen);
       axios
         .post("/api/insertMovie", formData)
+        .then((res) => { this.msg = res.data.message})
         .catch((error) => console.log(error.response.data));
     },
     selected() {
