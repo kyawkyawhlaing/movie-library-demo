@@ -10,6 +10,7 @@
     append-icon="mdi-movie-search"
     label="Search Movie"
     v-on:keydown.enter="pathToDetails"
+    color="white"
     clearable
     flat
     return-object

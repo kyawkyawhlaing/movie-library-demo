@@ -88,11 +88,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       item: "",
-      movieId: this.$route.params.id
+      movieId: this.$route.params.id,
+      lazyloading: true
     };
   },
   created: function created() {
@@ -108,7 +127,7 @@ __webpack_require__.r(__webpack_exports__);
             _this.item = movie;
           }
 
-          ;
+          _this.lazyloading = false;
         });
       });
     }
@@ -142,32 +161,40 @@ var render = function() {
             "v-col",
             { attrs: { cols: "12", sm: "3", md: "4" } },
             [
-              _c(
-                "v-card",
-                { attrs: { height: "auto" } },
-                [
-                  _c("v-img", {
-                    key: _vm.item.id,
-                    attrs: {
-                      src: "../../storage/" + _vm.item.image,
-                      alt: _vm.item.movie,
-                      contain: ""
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("v-card-text", [
-                    _c("p", { staticClass: "text--primary mb-0" }, [
-                      _c(
-                        "span",
-                        { staticClass: "font-weight-bold black--text" },
-                        [_vm._v("IMDb")]
-                      ),
-                      _vm._v(" - " + _vm._s(_vm.item.rating) + "\n          ")
-                    ])
-                  ])
-                ],
-                1
-              )
+              _vm.lazyloading
+                ? _c("v-skeleton-loader", {
+                    attrs: { type: "image,list-item" }
+                  })
+                : _c(
+                    "v-card",
+                    { attrs: { height: "auto" } },
+                    [
+                      _c("v-img", {
+                        key: _vm.item.id,
+                        attrs: {
+                          src: "../../storage/" + _vm.item.image,
+                          alt: _vm.item.movie,
+                          contain: ""
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("v-card-text", [
+                        _c("p", { staticClass: "text--primary mb-0" }, [
+                          _c(
+                            "span",
+                            { staticClass: "font-weight-bold black--text" },
+                            [_vm._v("IMDb")]
+                          ),
+                          _vm._v(
+                            " -\n            " +
+                              _vm._s(_vm.item.rating) +
+                              "\n          "
+                          )
+                        ])
+                      ])
+                    ],
+                    1
+                  )
             ],
             1
           ),
@@ -176,129 +203,143 @@ var render = function() {
             "v-col",
             { attrs: { sm: "9", md: "8" } },
             [
-              _c(
-                "v-card",
-                [
-                  _c("v-card-title", { staticClass: "display-3" }, [
-                    _vm._v(" " + _vm._s(_vm.item.movie) + " ")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-divider"),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
+              _vm.lazyloading
+                ? _c("v-skeleton-loader", {
+                    attrs: { type: "card-heading,article" }
+                  })
+                : _c(
+                    "v-card",
                     [
-                      _c(
-                        "v-row",
-                        { staticClass: "ml-2", attrs: { align: "center" } },
-                        [
-                          _c("div", { staticClass: "font-weight-bold" }, [
-                            _vm._v("Release - "),
-                            _c("span", [_vm._v(_vm._s(_vm.item.releaseDate))])
-                          ]),
-                          _vm._v(" "),
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mr-3 font-weight-bold" }, [
-                            _vm._v("\n              Duration - "),
-                            _c("span", {}, [_vm._v(_vm._s(_vm.item.duration))])
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c(
-                        "v-chip-group",
-                        {
-                          attrs: {
-                            "active-class": "teal accent-4 white--text",
-                            column: ""
-                          }
-                        },
-                        [
-                          _c("v-chip", { attrs: { color: "error" } }, [
-                            _vm._v("Action")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-chip", { attrs: { color: "warning" } }, [
-                            _vm._v("Adventure")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-chip", { attrs: { color: "success" } }, [
-                            _vm._v("Adult")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-chip", { attrs: { color: "primary" } }, [
-                            _vm._v("Anime")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(_vm.item.summary) +
-                            "\n          "
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-divider"),
-                  _vm._v(" "),
-                  _c(
-                    "v-card-text",
-                    [
-                      _c(
-                        "v-row",
-                        { attrs: { justify: "center" } },
-                        [
-                          _c("div", { staticClass: "ml-3" }, [
-                            _vm._v("Director")
-                          ]),
-                          _vm._v(" "),
-                          _c("v-spacer"),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "mr-3" }, [_vm._v("John")])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c("br"),
+                      _c("v-card-title", { staticClass: "display-3" }, [
+                        _vm._v(" " + _vm._s(_vm.item.movie) + " ")
+                      ]),
                       _vm._v(" "),
                       _c("v-divider"),
                       _vm._v(" "),
-                      _c("br"),
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-row",
+                            { staticClass: "ml-2", attrs: { align: "center" } },
+                            [
+                              _c("div", { staticClass: "font-weight-bold" }, [
+                                _vm._v("\n              Release - "),
+                                _c("span", [
+                                  _vm._v(_vm._s(_vm.item.releaseDate))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "mr-3 font-weight-bold" },
+                                [
+                                  _vm._v("\n              Duration - "),
+                                  _c("span", {}, [
+                                    _vm._v(_vm._s(_vm.item.duration))
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "v-chip-group",
+                            {
+                              attrs: {
+                                "active-class": "teal accent-4 white--text",
+                                column: ""
+                              }
+                            },
+                            [
+                              _c("v-chip", { attrs: { color: "error" } }, [
+                                _vm._v("Action")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-chip", { attrs: { color: "warning" } }, [
+                                _vm._v("Adventure")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-chip", { attrs: { color: "success" } }, [
+                                _vm._v("Adult")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-chip", { attrs: { color: "primary" } }, [
+                                _vm._v("Anime")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("br"),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c("div", [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(_vm.item.summary) +
+                                "\n          "
+                            )
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-divider"),
                       _vm._v(" "),
                       _c(
-                        "v-row",
-                        { attrs: { justify: "center" } },
+                        "v-card-text",
                         [
-                          _c("div", { staticClass: "ml-3" }, [
-                            _vm._v("Starring")
-                          ]),
+                          _c(
+                            "v-row",
+                            { attrs: { justify: "center" } },
+                            [
+                              _c("div", { staticClass: "ml-3" }, [
+                                _vm._v("Director")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "mr-3" }, [
+                                _vm._v("John")
+                              ])
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _c("v-spacer"),
+                          _c("br"),
                           _vm._v(" "),
-                          _c("div", { staticClass: "mr-3" }, [
-                            _vm._v("John Doe,Marry Jane")
-                          ])
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            { attrs: { justify: "center" } },
+                            [
+                              _c("div", { staticClass: "ml-3" }, [
+                                _vm._v("Starring")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "mr-3" }, [
+                                _vm._v("John Doe,Marry Jane")
+                              ])
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
                     ],
                     1
                   )
-                ],
-                1
-              )
             ],
             1
           )
@@ -313,19 +354,21 @@ var render = function() {
           _c(
             "v-sheet",
             [
-              _c("v-responsive", { attrs: { "aspect-ratio": 16 / 9 } }, [
-                _c("iframe", {
-                  attrs: {
-                    width: "100%",
-                    height: "500",
-                    src: "https://www.youtube.com/embed/ShZ978fBl6Y",
-                    frameborder: "0",
-                    allow:
-                      "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture",
-                    allowfullscreen: ""
-                  }
-                })
-              ])
+              _vm.lazyloading
+                ? _c("v-skeleton-loader", { attrs: { type: "card-avatar" } })
+                : _c("v-responsive", { attrs: { "aspect-ratio": 16 / 9 } }, [
+                    _c("iframe", {
+                      attrs: {
+                        width: "100%",
+                        height: "500",
+                        src: "https://www.youtube.com/embed/ShZ978fBl6Y",
+                        frameborder: "0",
+                        allow:
+                          "accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture",
+                        allowfullscreen: ""
+                      }
+                    })
+                  ])
             ],
             1
           )
@@ -365,6 +408,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
 /* harmony import */ var vuetify_lib_components_VResponsive__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VResponsive */ "./node_modules/vuetify/lib/components/VResponsive/index.js");
 /* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
+/* harmony import */ var vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VSkeletonLoader */ "./node_modules/vuetify/lib/components/VSkeletonLoader/index.js");
 
 
 
@@ -398,7 +442,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardTitle"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_5__["VChip"],VChipGroup: vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_6__["VChipGroup"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__["VImg"],VResponsive: vuetify_lib_components_VResponsive__WEBPACK_IMPORTED_MODULE_10__["VResponsive"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_11__["VSheet"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardTitle"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_5__["VChip"],VChipGroup: vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_6__["VChipGroup"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_8__["VDivider"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__["VImg"],VResponsive: vuetify_lib_components_VResponsive__WEBPACK_IMPORTED_MODULE_10__["VResponsive"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_11__["VSheet"],VSkeletonLoader: vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_12__["VSkeletonLoader"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VSpacer"]})
 
 
 /* hot reload */

@@ -2,27 +2,41 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="3" md="4">
-        <v-card height="auto">
-          <v-img :src="'../../storage/'+item.image" :alt="item.movie" :key="item.id" contain></v-img>
+        <v-skeleton-loader
+          type="image,list-item"
+          v-if="lazyloading"
+        ></v-skeleton-loader>
+        <v-card v-else height="auto">
+          <v-img
+            :src="'../../storage/' + item.image"
+            :alt="item.movie"
+            :key="item.id"
+            contain
+          ></v-img>
           <v-card-text>
             <p class="text--primary mb-0">
-              <span class="font-weight-bold black--text">IMDb</span> - {{item.rating}}
+              <span class="font-weight-bold black--text">IMDb</span> -
+              {{ item.rating }}
             </p>
           </v-card-text>
         </v-card>
       </v-col>
       <v-col sm="9" md="8">
-        <v-card>
-          <v-card-title class="display-3"
-            > {{ item.movie }} </v-card-title
-          >
+        <v-skeleton-loader
+          type="card-heading,article"
+          v-if="lazyloading"
+        ></v-skeleton-loader>
+        <v-card v-else>
+          <v-card-title class="display-3"> {{ item.movie }} </v-card-title>
           <v-divider></v-divider>
           <v-card-text>
             <v-row align="center" class="ml-2">
-              <div class="font-weight-bold">Release - <span>{{item.releaseDate}}</span></div>
+              <div class="font-weight-bold">
+                Release - <span>{{ item.releaseDate }}</span>
+              </div>
               <v-spacer></v-spacer>
               <div class="mr-3 font-weight-bold">
-                Duration - <span class="">{{item.duration}}</span>
+                Duration - <span class="">{{ item.duration }}</span>
               </div>
             </v-row>
             <br />
@@ -37,7 +51,7 @@
             </v-chip-group>
             <br /><br />
             <div>
-              {{item.summary}}
+              {{ item.summary }}
             </div>
           </v-card-text>
           <v-divider></v-divider>
@@ -62,7 +76,11 @@
 
     <v-card flat>
       <v-sheet>
-        <v-responsive :aspect-ratio="16 / 9">
+        <v-skeleton-loader
+          v-if="lazyloading"
+          type="card-avatar"
+        ></v-skeleton-loader>
+        <v-responsive v-else :aspect-ratio="16 / 9">
           <iframe
             width="100%"
             height="500"
@@ -80,10 +98,11 @@
 <script>
 export default {
   data() {
-    return { 
+    return {
       item: "",
-      movieId: this.$route.params.id 
-      };
+      movieId: this.$route.params.id,
+      lazyloading: true,
+    };
   },
   created() {
     this.movieDetail();
@@ -91,9 +110,13 @@ export default {
   methods: {
     movieDetail() {
       axios.get("/api/getAllmovies").then((res) => {
-        res.data.movies.map((movie) => {
-          if(movie.id == this.movieId) { this.item = movie};
-        });
+        res.data.movies
+          .map((movie) => {
+            if (movie.id == this.movieId) {
+              this.item = movie;
+            }
+            this.lazyloading = false
+          })
       });
     },
   },

@@ -244,7 +244,7 @@ var render = function() {
                       "clear-icon": "mdi-close-circle",
                       label: "Text",
                       value: "Send Message",
-                      "prepend-icon": "mdi-format-paragraph",
+                      "append-icon": "mdi-format-paragraph",
                       rows: "3"
                     }
                   }),
@@ -252,8 +252,11 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      staticClass: "ml-6",
-                      attrs: { color: "success", loading: _vm.loader1 },
+                      staticClass: "ml-3",
+                      attrs: {
+                        color: "light-blue darken-1",
+                        loading: _vm.loader1
+                      },
                       on: {
                         click: function($event) {
                           _vm.loader = "loader1"
@@ -261,10 +264,15 @@ var render = function() {
                       }
                     },
                     [
-                      _vm._v("Submit\n          "),
-                      _c("v-icon", { attrs: { right: "", dark: "" } }, [
-                        _vm._v(" mdi-checkbox-marked-circle-outline ")
-                      ])
+                      _c("span", { staticStyle: { color: "white" } }, [
+                        _vm._v("Submit")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-icon",
+                        { attrs: { color: "white", right: "", dark: "" } },
+                        [_vm._v(" mdi-checkbox-marked-circle-outline ")]
+                      )
                     ],
                     1
                   )

@@ -49,16 +49,16 @@
             clear-icon="mdi-close-circle"
             label="Text"
             value="Send Message"
-            prepend-icon="mdi-format-paragraph"
+            append-icon="mdi-format-paragraph"
             rows="3"
           ></v-textarea>
           <v-btn
-            class="ml-6"
-            color="success"
+            class="ml-3"
+            color="light-blue darken-1"
             :loading="loader1"
             @click="loader = 'loader1'"
-            >Submit
-            <v-icon right dark> mdi-checkbox-marked-circle-outline </v-icon>
+            > <span style="color: white">Submit</span>
+            <v-icon color="white" right dark> mdi-checkbox-marked-circle-outline </v-icon>
           </v-btn>
         </v-form>
       </v-col>

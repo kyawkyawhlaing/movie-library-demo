@@ -7,6 +7,7 @@ require("./bootstrap");
 window.Vue = require("vue");
 
 Vue.component("v-search", require("./components/Searchbox.vue").default);
+Vue.component("v-scrollTop", require("./components/ScrollToTop.vue").default);
 
 const app = new Vue({
     router,

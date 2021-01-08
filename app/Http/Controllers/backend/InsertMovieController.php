@@ -24,7 +24,7 @@ class InsertMovieController extends Controller
         return response()->json([
             'genres' => $genres,
             'releases' => $releases
-        ],200);
+        ], 200);
     }
 
     /**
@@ -47,11 +47,11 @@ class InsertMovieController extends Controller
     {
         $request->validate([
             'movie' => 'required',
-            'image' => 'required|file|mimes: jpg,jpeg,png|max: 2048',
+            'file' => 'required|file|mimes: jpg,jpeg,png|max: 2048',
         ]);
 
-        $name = $request->file('image');
-        $imgPath =  $name->store('poster', 'public');
+        $file = $request->file('file');
+        $imgPath =  $file->store('poster', 'public');
 
         $movie = Movie::create([
             'movie'     => $request->get('movie'),
@@ -63,20 +63,33 @@ class InsertMovieController extends Controller
             'releaseDate'      =>  $request->get('releaseDate'),
             'user_id'   => 1,
         ]);
- 
-        $name = $request->get('releaseYear');
-        // if property is not found in the collection instance,return 404 page
-        $release_year = Release::where('releaseYear', '=', $name)->firstOrFail();
-        //attach or generate id into pivot table
-        $movie->releases()->attach($release_year->id);
 
-        
+        // $name = $request->get('releaseYear');
+        $name = $request->get('releaseDate');
+        $explodeDate  = explode("-", $name);
+        $getYear = $explodeDate[0];
+        // if property is not found in the collection instance,return 404 page
+        $release_year = Release::where('releaseYear', '=', $getYear)->firstOrFail();
+        if ($release_year) {
+            //attach or generate id into pivot table
+            $movie->releases()->attach($release_year->id);
+        } else {
+            Release::create([
+                'releaseYear' => $getYear
+            ]);
+            //attach or generate id into pivot table
+            $movie->releases()->attach($release_year->id);
+        }
+
+
+
         if (!empty($request->input('genres'))) {
             $input = $request->input('genres');
             //insert resources into database table
             //attach or generate id into pivot table
             //input values aren't array type
-            $arr = explode(",",$input);
+            $arr = explode(",", $input);
+
             foreach ($arr as $key => $value) {
                 $genre = Genre::where('genre', '=', $value)->firstOrFail();
                 $movie->genres()->attach($genre->id);

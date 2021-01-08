@@ -14,10 +14,10 @@
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
-    <v-container class="grey lighten-5">
+    <v-container>
       <v-row class="mx-0">
         <v-col cols="12" sm="3" md="3" v-for="item in items" :key="item.id">
-          <v-skeleton-loader type="card-avatar" v-if="lazyloading"></v-skeleton-loader>
+          <v-skeleton-loader type="card-avatar,divider,button" v-if="lazyloading"></v-skeleton-loader>
           <v-card v-else class="mx-auto" :loading="isloading">
             <template slot="progress">
               <v-progress-linear
@@ -40,7 +40,7 @@
               <v-btn
                 :to="{name: 'MovieDetails',params: { id: item.id}}"
                 class="my-2"
-                color="teal accent-4"
+                color="light-blue lighten-1"
                 @click="reserve"
                 text
                 >Explore</v-btn
@@ -58,7 +58,7 @@
         :total-visible="7"
         :value="meta.current_page"
         @input="getMovie"
-        color="teal accent-3"
+        color="light-blue lighten-1"
         circle
       ></v-pagination>
     </div>
@@ -91,7 +91,7 @@ export default {
     this.getMovie();
   },
   mounted() {
-    setTimeout(() => (this.lazyloading = false),5000);
+    setTimeout(() => (this.lazyloading = false),2000);
   },
   methods: {
     reserve() {

@@ -99,7 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 
     setTimeout(function () {
       return _this.lazyloading = false;
-    }, 5000);
+    }, 2000);
   },
   methods: {
     reserve: function reserve() {
@@ -189,7 +189,6 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-container",
-        { staticClass: "grey lighten-5" },
         [
           _c(
             "v-row",
@@ -201,7 +200,7 @@ var render = function() {
                 [
                   _vm.lazyloading
                     ? _c("v-skeleton-loader", {
-                        attrs: { type: "card-avatar" }
+                        attrs: { type: "card-avatar,divider,button" }
                       })
                     : _c(
                         "v-card",
@@ -258,7 +257,7 @@ var render = function() {
                                       name: "MovieDetails",
                                       params: { id: item.id }
                                     },
-                                    color: "teal accent-4",
+                                    color: "light-blue lighten-1",
                                     text: ""
                                   },
                                   on: { click: _vm.reserve }
@@ -292,7 +291,7 @@ var render = function() {
               length: _vm.meta.last_page,
               "total-visible": 7,
               value: _vm.meta.current_page,
-              color: "teal accent-3",
+              color: "light-blue lighten-1",
               circle: ""
             },
             on: { input: _vm.getMovie },

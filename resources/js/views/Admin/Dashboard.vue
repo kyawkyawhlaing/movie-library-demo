@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="white" flat>
+    <v-app-bar app color="light-blue darken-1" flat>
       <v-toolbar-title>V-Catalogue</v-toolbar-title>
       <v-avatar
         :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
@@ -8,10 +8,10 @@
       ></v-avatar>
       <v-spacer></v-spacer>
 
-      <v-tabs centered class="ml-n9" color="grey darken-1">
-        <v-tab :to="{ name: 'Dashboard' }"> Dashboard </v-tab>
-        <v-tab :to="{ name: 'InsertMovie' }"> Insert Data </v-tab>
-        <v-tab @click.prevent="logout"> Logout </v-tab>
+      <v-tabs centered class="ml-n9" color="white">
+        <v-tab :to="{ name: 'Dashboard' }" class="font-weight-bold"> Dashboard </v-tab>
+        <v-tab :to="{ name: 'InsertMovie' }" class="font-weight-bold"> Insert Data </v-tab>
+        <v-tab @click.prevent="logout" class="font-weight-bold"> Logout </v-tab>
       </v-tabs>
 
       <v-avatar

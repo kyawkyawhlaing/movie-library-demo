@@ -108,7 +108,11 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("router-link", { attrs: { to: "/" } }, [_vm._v("Back To Home Page")])
+        _c(
+          "router-link",
+          { staticClass: "light-blue lighten-1", attrs: { to: "/" } },
+          [_vm._v("Back To Home Page")]
+        )
       ],
       1
     )

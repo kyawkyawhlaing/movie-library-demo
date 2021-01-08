@@ -1,145 +1,199 @@
 <template>
-  <div>
-    <form
-      @submit.prevent="insert"
-      class="col-8 mx-auto"
-      enctype="multipart/form-data"
-    >
-      <v-alert v-if="msg" color="green" type="success" dismissible>{{ msg }}</v-alert>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="Movie">Movie</label>
-          <input type="text" v-model="movie" class="form-control" id="Movie" />
-        </div>
-        <div class="form-group col-md-6">
-          <label for="Cast">Cast</label>
-          <input type="text" v-model="cast" class="form-control" id="Cast" />
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="Rating">Rating</label>
-          <input
-            type="number"
-            v-model="rating"
-            class="form-control"
-            id="Rating"
-            step="any"
-            min="0"
-            max="10"
-          />
-        </div>
-        <div class="form-group col-md-4">
-          <label for="Duration">Duration</label>
-          <input
-            type="text"
-            v-model="duration"
-            class="form-control"
-            id="Duration"
-          />
-        </div>
-      </div>
-      <div class="col-12 my-2">
-        <h3>Movie Genre</h3>
-        <div
-          class="form-check form-check-inline col-2"
-          v-for="(genre, index) in genres"
-          :key="index"
-        >
-          <input
-            class="form-check-input"
-            type="checkbox"
-            v-model="movieGen"
-            :id="'checkbox' + genre.id"
+  <v-form ref="form" id="form" enctype="multipart/form-data" lazy-validation>
+    <v-container>
+      <v-row>
+        <v-col lg="4">
+          <v-text-field
+            v-model="form.movie"
+            label="Movie"
+            :rules="[rules.required, rules.counter]"
+            prepend-icon="mdi-movie-roll"
+            solo-inverted
+          ></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            v-model="form.cast"
+            label="Cast"
+            :rules="[rules.required, rules.string]"
+            prepend-icon="mdi-movie-open"
+            solo-inverted
+          ></v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            v-model="form.duration"
+            label="Duration"
+            :rules="[rules.required, rules.duration]"
+            prepend-icon="mdi-av-timer"
+            solo-inverted
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="6">
+          <v-text-field
+            v-model="form.rating"
+            label="Rating"
+            :rules="[rules.required, rules.rating]"
+            prepend-icon="mdi-star"
+            solo-inverted
+          ></v-text-field>
+        </v-col>
+        <v-col cols="5">
+          <v-file-input
+            v-model="form.image"
+            accept="image/*"
+            prepend-icon="mdi-camera"
+            :rules="[rules.picture]"
+            show-size
+            truncate-length="10"
+          ></v-file-input>
+        </v-col>
+      </v-row>
+      <v-row class="ml-9">
+        <v-col cols="2" v-for="genre in genres" :key="genre.id">
+          <v-checkbox
+            v-model="form.genres"
             :value="genre.genre"
-          />
-          <label class="form-check-label" :for="'checkbox' + genre.id">
-            {{ genre.genre }}
-          </label>
-        </div>
-      </div>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Summary</span>
-        </div>
-        <textarea class="form-control" v-model="summary"></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="ReleaseDate">Release Date</label>
-          <input
-            type="date"
-            v-model="releaseDate"
-            class="form-control"
-            id="ReleaseDate"
-          />
-        </div>
-        <div class="form-group col-md-4">
-          <label for="ReleaseYear">Release Year</label>
-          <select class="form-control" v-model="releaseYear" id="ReleaseYear">
-            <option value="" selected>Release Year</option>
-            <option
-              v-for="release in releases"
-              :key="release.id"
-              :value="release.releaseYear"
-            >
-              {{ release.releaseYear }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <input
-          type="file"
-          ref="image"
-          class="form-control-file"
-          accept="image/*"
-          @change="selected"
-        />
-      </div>
-      <button type="submit" class="btn btn-success my-3">Insert</button>
-    </form>
-  </div>
+            :color="colour[Math.floor(Math.random() * (colour.length + 1))]"
+            :label="genre.genre"
+          ></v-checkbox>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="6">
+          <v-textarea
+            v-model="form.summary"
+            background-color="light-blue lighten-4"
+            prepend-icon="mdi-comment"
+            :rules="[rules.required]"
+            filled
+          >
+          </v-textarea>
+        </v-col>
+        <v-col cols="5">
+          <v-menu
+            ref="menu"
+            v-model="menu"
+            :close-on-content-click="false"
+            transition="scale-transition"
+            offset-y
+            max-width="290px"
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="form.releaseDate"
+                :rules="[rules.required]"
+                label="Date"
+                hint="YYYY-MM-DD format"
+                persistent-hint
+                prepend-icon="mdi-calendar"
+                v-bind="attrs"
+                v-on="on"
+                autocomplete="off"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              ref="picker"
+              v-model="form.releaseDate"
+              :max="new Date().toISOString().substr(0, 10)"
+              no-title
+              @change="save"
+            ></v-date-picker>
+          </v-menu>
+        </v-col>
+      </v-row>
+      <v-alert
+        class="ml-9"
+        v-show="!!message"
+        type="success"
+        dense
+        text
+        dismissible
+      >
+        {{ message }}
+      </v-alert>
+      <v-btn
+        color="light-blue lighten-4"
+        class="blue--text ml-9"
+        form="form"
+        @click="insertData"
+        depressed
+        >SUBMIT</v-btn
+      >
+    </v-container>
+  </v-form>
 </template>
 
 <script>
+import color from "../../color";
+
 export default {
   data() {
     return {
       genres: null,
       releases: null,
-      movie: "",
-      cast: "",
-      rating: "",
-      duration: "",
-      releaseDate: "",
-      releaseYear: "",
-      summary: "",
-      selectedFile: null,
-      movieGen: [],
-      msg: null,
+      picker: null,
+      menu: false,
+      message: null,
+      colour: color,
+      form: {
+        movie: "",
+        image: null,
+        rating: "",
+        summary: "",
+        duration: "",
+        cast: "",
+        releaseDate: "",
+        genres: [],
+      },
+      rules: {
+        required: (value) => !!value || "required.",
+        counter: (value) => value.length <= 20 || "Max 20 characters.",
+        string: (value) => value.length <= 255 || "Must be String.",
+        rating: (number) =>
+          number.valueOf() <= 10 || "Highest rating value is 10",
+        duration: (value) => {
+          const pattern = /[0-9]{1||2}[a-zA-Z]{2}[0-9]{1||2}[a-zA-Z]{2}/g;
+          return pattern.test(value);
+        },
+        picture: (value) =>
+          !value ||
+          value.size < 2000000 ||
+          "Avatar size should be less than 2 MB!",
+      },
     };
   },
-  methods: {
-    insert() {
-      let formData = new FormData();
-      formData.append("movie", this.movie);
-      formData.append("image", this.selectedFile);
-      formData.append("rating", this.rating);
-      formData.append("summary", this.summary);
-      formData.append("duration", this.duration);
-      formData.append("cast", this.cast);
-      formData.append("releaseDate", this.releaseDate);
-      formData.append("releaseYear", this.releaseYear);
-      formData.append("genres", this.movieGen);
-      axios
-        .post("/api/insertMovie", formData)
-        .then((res) => { this.msg = res.data.message})
-        .catch((error) => console.log(error.response.data));
+  watch: {
+    menu(val) {
+      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
     },
-    selected() {
-      this.selectedFile = this.$refs.image.files[0];
-      console.log(this.selectedFile);
+  },
+  methods: {
+    save(date) {
+      this.$refs.menu.save(date);
+    },
+    insertData() {
+      this.$refs.form.validate();
+      let formData = new FormData();
+      formData.append("movie", this.form.movie);
+      formData.append("file", this.form.image);
+      formData.append("rating", this.form.rating);
+      formData.append("summary", this.form.summary);
+      formData.append("duration", this.form.duration);
+      formData.append("cast", this.form.cast);
+      formData.append("releaseDate", this.form.releaseDate);
+      formData.append("genres", this.form.genres);
+
+      axios
+        .post("/api/insertMovie", formData, {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        })
+        .then(({ data }) => (this.message = data.message));
     },
   },
   created() {
@@ -150,6 +204,5 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
+<style scoped>
+</style>>

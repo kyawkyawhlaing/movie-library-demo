@@ -132,7 +132,7 @@ var render = function() {
     [
       _c(
         "v-app-bar",
-        { attrs: { app: "", color: "white", flat: "" } },
+        { attrs: { app: "", color: "light-blue darken-1", flat: "" } },
         [
           _c("v-toolbar-title", [_vm._v("V-Catalogue")]),
           _vm._v(" "),
@@ -149,22 +149,30 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-tabs",
-            {
-              staticClass: "ml-n9",
-              attrs: { centered: "", color: "grey darken-1" }
-            },
+            { staticClass: "ml-n9", attrs: { centered: "", color: "white" } },
             [
-              _c("v-tab", { attrs: { to: { name: "Dashboard" } } }, [
-                _vm._v(" Dashboard ")
-              ]),
-              _vm._v(" "),
-              _c("v-tab", { attrs: { to: { name: "InsertMovie" } } }, [
-                _vm._v(" Insert Data ")
-              ]),
+              _c(
+                "v-tab",
+                {
+                  staticClass: "font-weight-bold",
+                  attrs: { to: { name: "Dashboard" } }
+                },
+                [_vm._v(" Dashboard ")]
+              ),
               _vm._v(" "),
               _c(
                 "v-tab",
                 {
+                  staticClass: "font-weight-bold",
+                  attrs: { to: { name: "InsertMovie" } }
+                },
+                [_vm._v(" Insert Data ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-tab",
+                {
+                  staticClass: "font-weight-bold",
                   on: {
                     click: function($event) {
                       $event.preventDefault()

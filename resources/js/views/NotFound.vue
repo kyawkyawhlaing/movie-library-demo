@@ -9,7 +9,7 @@
         Sorry but the page you are looking for does not exist, have been
         removed. name changed or is temporarily unavailable
       </p>
-      <router-link to="/">Back To Home Page</router-link>
+      <router-link to="/" class="light-blue lighten-1">Back To Home Page</router-link>
     </div>
   </div>
 </template>

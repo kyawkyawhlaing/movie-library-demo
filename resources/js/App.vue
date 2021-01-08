@@ -2,6 +2,7 @@
   <v-app>
     <TheNavigation v-if="$route.meta.requiresAuth !== true && $route.name !== 'NotFound'" />
     <v-main >
+      <v-scrollTop></v-scrollTop>
       <router-view :key="$route.path"></router-view>
     </v-main>
     <v-footer v-if="$route.meta.requiresAuth !== true && $route.name !== 'NotFound'" color="light-blue darken-3" class="white--text"><h1 class="display-1 mx-auto">Created by KyawHlaing</h1></v-footer>

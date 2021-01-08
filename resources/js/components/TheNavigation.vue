@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-app-bar app class="light-blue darken-3">
+    <v-app-bar app class="light-blue darken-2">
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
@@ -37,12 +37,12 @@
           </v-tab>
           <v-tab :to="{ name: 'Login' }" class="white--text font-weight-bold hidden-md-and-down">
             Login
-            <v-icon right>mdi-account-circle</v-icon>
+            <v-icon color="white" right>mdi-account-circle</v-icon>
           </v-tab>
         </v-tabs>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" class="success" absolute temporary right dense light>
+    <v-navigation-drawer v-model="drawer" class="light-blue lighten-1" absolute temporary right dense light>
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
