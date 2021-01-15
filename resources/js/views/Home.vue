@@ -17,7 +17,11 @@
     <v-container>
       <v-row class="mx-0">
         <v-col cols="12" sm="3" md="3" v-for="item in items" :key="item.id">
-          <v-skeleton-loader type="card-avatar,divider,button" v-if="lazyloading"></v-skeleton-loader>
+          <v-skeleton-loader
+            class="ma-10"
+            type="card-avatar,divider,button"
+            v-if="lazyloading"
+          ></v-skeleton-loader>
           <v-card v-else class="mx-auto" :loading="isloading">
             <template slot="progress">
               <v-progress-linear
@@ -26,31 +30,33 @@
                 color="deep-purple"
               ></v-progress-linear>
             </template>
-            <!-- https://cdn.vuetifyjs.com/images/cards/sunshine.jpg -->
+
             <v-img
-              :src="'./storage/'+ item.image"
-              height="300"
+              :src="'./storage/' + item.image"
+              height="250"
               :alt="item.movie"
               cover
             ></v-img>
-            <v-card-title class="mx-auto">{{item.movie}}</v-card-title>
-            <v-card-subtitle class="font-weight-bold">IMDb {{item.rating}}</v-card-subtitle>
-            <v-divider></v-divider>
-            <v-card-actions>
-              <v-btn
-                :to="{name: 'MovieDetails',params: { id: item.id}}"
-                class="my-2"
-                color="light-blue lighten-1"
-                @click="reserve"
-                text
-                >Explore</v-btn
+            <v-card-title class="mx-auto">{{ item.movie }}</v-card-title>
+            <v-card-subtitle class="font-weight-bold"
+              >Rating {{ item.rating }}
+            <v-btn
+              :to="{ name: 'MovieDetails', params: { id: item.id } }"
+              class="ml-4"
+              color="light-blue lighten-1"
+              @click="reserve"
+              text
+              fab
               >
-              <v-spacer></v-spacer>
-            </v-card-actions>
+              <v-icon>mdi-eye</v-icon>
+              </v-btn>
+            </v-card-subtitle>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
+
+    <!-- pagination -->
     <div class="text-center mb-7">
       <v-pagination
         v-model="meta.current_page"
@@ -91,7 +97,7 @@ export default {
     this.getMovie();
   },
   mounted() {
-    setTimeout(() => (this.lazyloading = false),2000);
+    setTimeout(() => (this.lazyloading = false), 2000);
   },
   methods: {
     reserve() {
@@ -100,8 +106,8 @@ export default {
     },
     getMovie(page) {
       axios
-        .get("/api/movie",{
-          params: {page}
+        .get("/api/movie", {
+          params: { page },
         })
         .then((response) => {
           this.items = response.data.data;

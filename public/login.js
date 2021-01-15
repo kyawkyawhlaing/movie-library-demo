@@ -9,8 +9,6 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -69,7 +67,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "login",
   data: function data() {
@@ -99,7 +96,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     error: function error() {
-      return this.$store.state.error;
+      return this.$store.state.login.error;
     }
   },
   methods: {
@@ -108,12 +105,12 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$refs.form.validate();
       this.loader = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/sanctum/csrf-cookie").then(function () {
+      axios.get("/sanctum/csrf-cookie").then(function () {
         _this.$store.dispatch("login", {
           email: _this.email,
           password: _this.password
         }).then(function () {
-          if (_this.$store.state.user) {
+          if (_this.$store.state.login.user) {
             _this.$router.push("/dashboard");
 
             _this.loader = false;
@@ -201,7 +198,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            { attrs: { cols: "12", sm: "6", md: "6" } },
+            { staticClass: "hidden-md-and-down", attrs: { cols: "6" } },
             [
               _c(
                 "v-card",

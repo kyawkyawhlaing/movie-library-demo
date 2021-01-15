@@ -21,7 +21,6 @@ export default [
     "pink darken-4",
     "pink darken-5",
     "yellow",
-    "yellow lighten-1",
     "yellow darken-1",
     "yellow darken-2",
     "yellow darken-3",

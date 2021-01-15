@@ -9,7 +9,7 @@
       <v-spacer></v-spacer>
 
       <v-tabs centered class="ml-n9" color="white">
-        <v-tab :to="{ name: 'Dashboard' }" class="font-weight-bold"> Dashboard </v-tab>
+        <v-tab :to="{ name: 'DashboardDataTable' }" class="font-weight-bold"> Dashboard </v-tab>
         <v-tab :to="{ name: 'InsertMovie' }" class="font-weight-bold"> Insert Data </v-tab>
         <v-tab @click.prevent="logout" class="font-weight-bold"> Logout </v-tab>
       </v-tabs>

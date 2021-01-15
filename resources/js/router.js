@@ -32,16 +32,19 @@ const routes = [
             )
     },
     {
-        path: '/movieDetails/:id',
-        name: 'MovieDetails',
+        path: "/movieDetails/:id",
+        name: "MovieDetails",
         component: () =>
-        import(
-            /* webpackChunkname: "123" */
-            "./views/MovieDetails.vue"
-        )
+            import(
+                /* webpackChunkname: "123" */
+                "./views/MovieDetails.vue"
+            )
     },
     {
         path: "/dashboard",
+        redirect: to => {
+            return "/dashboardDataTable";
+        },
         name: "Dashboard",
         component: () =>
             import(
@@ -50,14 +53,14 @@ const routes = [
             ),
         children: [
             {
-                path: "/dashboardview",
-                name: "DashboardView",
+                path: "/dashboardDataTable",
+                name: "DashboardDataTable",
                 component: () =>
-                import(
-                    /*webpackChunkname: "DashboardView" */
-                    "./views/Admin/DashboardView.vue"
-                ),
-            meta: { requiresAuth: true }
+                    import(
+                        /*webpackChunkname: "DashboardView" */
+                        "./views/Admin/DashboardView.vue"
+                    ),
+                meta: { requiresAuth: true }
             },
             {
                 path: "/insertmovie",

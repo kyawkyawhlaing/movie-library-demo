@@ -139,6 +139,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -202,17 +235,15 @@ __webpack_require__.r(__webpack_exports__);
       var formData = new FormData();
       formData.append("movie", this.form.movie);
       formData.append("file", this.form.image);
+      formData.append("director", this.form.director);
+      formData.append("link", this.form.link);
       formData.append("rating", this.form.rating);
       formData.append("summary", this.form.summary);
       formData.append("duration", this.form.duration);
       formData.append("cast", this.form.cast);
       formData.append("releaseDate", this.form.releaseDate);
       formData.append("genres", this.form.genres);
-      axios.post("/api/insertMovie", formData, {
-        headers: {
-          "Content-type": "multipart/form-data"
-        }
-      }).then(function (_ref) {
+      this.$store.dispatch("insertData", formData).then(function (_ref) {
         var data = _ref.data;
         return _this2.message = data.message;
       });
@@ -221,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this3 = this;
 
-    axios.get("/api/insertMovie").then(function (response) {
+    this.$store.dispatch("getMovieData").then(function (response) {
       _this3.genres = response.data.genres;
       _this3.releases = response.data.releases;
     });
@@ -337,7 +368,6 @@ var render = function() {
             [
               _c(
                 "v-col",
-                { attrs: { cols: "6" } },
                 [
                   _c("v-text-field", {
                     attrs: {
@@ -360,7 +390,48 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-col",
-                { attrs: { cols: "5" } },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "Director",
+                      rules: _vm.rules.required,
+                      "solo-inverted": ""
+                    },
+                    model: {
+                      value: _vm.form.director,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "director", $$v)
+                      },
+                      expression: "form.director"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "Link",
+                      rules: _vm.rules.required,
+                      "solo-inverted": ""
+                    },
+                    model: {
+                      value: _vm.form.link,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "link", $$v)
+                      },
+                      expression: "form.link"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
                 [
                   _c("v-file-input", {
                     attrs: {
@@ -394,6 +465,7 @@ var render = function() {
                 { key: genre.id, attrs: { cols: "2" } },
                 [
                   _c("v-checkbox", {
+                    key: genre.id,
                     attrs: {
                       value: genre.genre,
                       color:
@@ -533,34 +605,58 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "v-alert",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: !!_vm.message,
-                  expression: "!!message"
-                }
-              ],
-              staticClass: "ml-9",
-              attrs: { type: "success", dense: "", text: "", dismissible: "" }
-            },
-            [_vm._v("\n      " + _vm._s(_vm.message) + "\n    ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              staticClass: "blue--text ml-9",
-              attrs: {
-                color: "light-blue lighten-4",
-                form: "form",
-                depressed: ""
-              },
-              on: { click: _vm.insertData }
-            },
-            [_vm._v("SUBMIT")]
+            "v-row",
+            [
+              _c(
+                "v-col",
+                { attrs: { cols: "6" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "blue--text ml-9",
+                      attrs: {
+                        color: "light-blue lighten-4",
+                        form: "form",
+                        depressed: ""
+                      },
+                      on: { click: _vm.insertData }
+                    },
+                    [_vm._v("SUBMIT")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { attrs: { cols: "6" } },
+                [
+                  _c(
+                    "v-alert",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !!_vm.message,
+                          expression: "!!message"
+                        }
+                      ],
+                      staticClass: "ml-9",
+                      attrs: { type: "success", dense: "", dismissible: "" }
+                    },
+                    [
+                      _vm._v(
+                        "\n          " + _vm._s(_vm.message) + "\n        "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         1
@@ -585,7 +681,7 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (["red", "red lighten-1", "red darken-1", "red darken-2", "red darken-3", "red darken-4", "red darken-5", "cyan", "cyan lighten-1", "cyan darken-1", "cyan darken-2", "cyan darken-3", "cyan darken-4", "cyan darken-5", "pink", "pink lighten-1", "pink darken-1", "pink darken-2", "pink darken-3", "pink darken-4", "pink darken-5", "yellow", "yellow lighten-1", "yellow darken-1", "yellow darken-2", "yellow darken-3", "yellow darken-4", "yellow darken-5", "purple", "purple lighten-1", "purple darken-1", "purple darken-2", "purple darken-3", "purple darken-4", "purple darken-5", "indigo", "indigo lighten-1", "indigo darken-1", "indigo darken-2", "indigo darken-3", "indigo darken-4", "indigo darken-5", "blue", "blue lighten-1", "blue darken-1", "blue darken-2", "blue darken-3", "blue darken-4", "blue darken-5", "teal", "teal lighten-1", "teal darken-1", "teal darken-2", "teal darken-3", "teal darken-4", "teal darken-5", "cyan", "cyan lighten-1", "cyan darken-1", "cyan darken-2", "cyan darken-3", "cyan darken-4", "cyan darken-5", "green", "green lighten-1", "green darken-1", "green darken-2", "green darken-3", "green darken-4", "green darken-5", "lime", "lime lighten-1", "lime darken-1", "lime darken-2", "lime darken-3", "lime darken-4", "lime darken-5", "amber", "amber lighten-1", "amber darken-1", "amber darken-2", "amber darken-3", "amber darken-4", "amber darken-5", "orange", "orange lighten-1", "orange darken-1", "orange darken-2", "orange darken-3", "orange darken-4", "orange darken-5", "blue-grey", "blue-grey lighten-1", "blue-grey darken-1", "blue-grey darken-2", "blue-grey darken-3", "blue-grey darken-4", "blue-grey darken-5", "brown", "brown lighten-1", "brown darken-1", "brown darken-2", "brown darken-3", "brown darken-4", "brown darken-5", "grey", "grey lighten-1", "grey darken-1", "grey darken-2", "grey darken-3", "grey darken-4", "grey darken-5"]);
+/* harmony default export */ __webpack_exports__["default"] = (["red", "red lighten-1", "red darken-1", "red darken-2", "red darken-3", "red darken-4", "red darken-5", "cyan", "cyan lighten-1", "cyan darken-1", "cyan darken-2", "cyan darken-3", "cyan darken-4", "cyan darken-5", "pink", "pink lighten-1", "pink darken-1", "pink darken-2", "pink darken-3", "pink darken-4", "pink darken-5", "yellow", "yellow darken-1", "yellow darken-2", "yellow darken-3", "yellow darken-4", "yellow darken-5", "purple", "purple lighten-1", "purple darken-1", "purple darken-2", "purple darken-3", "purple darken-4", "purple darken-5", "indigo", "indigo lighten-1", "indigo darken-1", "indigo darken-2", "indigo darken-3", "indigo darken-4", "indigo darken-5", "blue", "blue lighten-1", "blue darken-1", "blue darken-2", "blue darken-3", "blue darken-4", "blue darken-5", "teal", "teal lighten-1", "teal darken-1", "teal darken-2", "teal darken-3", "teal darken-4", "teal darken-5", "cyan", "cyan lighten-1", "cyan darken-1", "cyan darken-2", "cyan darken-3", "cyan darken-4", "cyan darken-5", "green", "green lighten-1", "green darken-1", "green darken-2", "green darken-3", "green darken-4", "green darken-5", "lime", "lime lighten-1", "lime darken-1", "lime darken-2", "lime darken-3", "lime darken-4", "lime darken-5", "amber", "amber lighten-1", "amber darken-1", "amber darken-2", "amber darken-3", "amber darken-4", "amber darken-5", "orange", "orange lighten-1", "orange darken-1", "orange darken-2", "orange darken-3", "orange darken-4", "orange darken-5", "blue-grey", "blue-grey lighten-1", "blue-grey darken-1", "blue-grey darken-2", "blue-grey darken-3", "blue-grey darken-4", "blue-grey darken-5", "brown", "brown lighten-1", "brown darken-1", "brown darken-2", "brown darken-3", "brown darken-4", "brown darken-5", "grey", "grey lighten-1", "grey darken-1", "grey darken-2", "grey darken-3", "grey darken-4", "grey darken-5"]);
 
 /***/ }),
 

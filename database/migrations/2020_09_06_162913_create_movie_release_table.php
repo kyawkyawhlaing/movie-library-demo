@@ -15,8 +15,8 @@ class CreateMovieReleaseTable extends Migration
     {
         Schema::create('movie_release', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('movie_id')->constrained('movies');
-            $table->foreignId('release_id')->constrained('releases');
+            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
+            $table->foreignId('release_id')->constrained('releases')->onDelete('cascade');
             $table->timestamps();
         });
     }

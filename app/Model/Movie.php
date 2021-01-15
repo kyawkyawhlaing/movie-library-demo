@@ -9,6 +9,8 @@ class Movie extends Model
     protected $fillable = [
         'user_id',
         'movie',
+        'link',
+        'director',
         'image',
         'rating',
         'summary',

@@ -15,14 +15,16 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->default(1);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('movie')->unique();
+            $table->string('director');
+            $table->text('link');
             $table->text('image')->nullable();
             $table->string('cast');
             $table->date('releaseDate')->nullable();
             $table->unsignedFloat('rating')->default(0);
             $table->longText('summary')->nullable();
-            $table->string('duration',10)->default(0);
+            $table->string('duration', 10)->default(0);
             $table->timestamps();
         });
     }

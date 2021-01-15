@@ -1,6 +1,7 @@
 <template>
   <v-form ref="form" id="form" enctype="multipart/form-data" lazy-validation>
     <v-container>
+      <!-- movie/cast/duration field-->
       <v-row>
         <v-col lg="4">
           <v-text-field
@@ -30,8 +31,10 @@
           ></v-text-field>
         </v-col>
       </v-row>
+
+      <!-- rating/image/director/link field-->
       <v-row>
-        <v-col cols="6">
+        <v-col>
           <v-text-field
             v-model="form.rating"
             label="Rating"
@@ -40,7 +43,25 @@
             solo-inverted
           ></v-text-field>
         </v-col>
-        <v-col cols="5">
+        <v-col>
+          <v-text-field
+            v-model="form.director"
+            label="Director"
+            :rules="rules.required"
+            solo-inverted
+          >
+          </v-text-field>
+        </v-col>
+        <v-col>
+          <v-text-field
+            v-model="form.link"
+            label="Link"
+            :rules="rules.required"
+            solo-inverted
+          >
+          </v-text-field>
+        </v-col>
+        <v-col >
           <v-file-input
             v-model="form.image"
             accept="image/*"
@@ -51,6 +72,8 @@
           ></v-file-input>
         </v-col>
       </v-row>
+
+      <!-- checkbox field-->
       <v-row class="ml-9">
         <v-col cols="2" v-for="genre in genres" :key="genre.id">
           <v-checkbox
@@ -58,9 +81,12 @@
             :value="genre.genre"
             :color="colour[Math.floor(Math.random() * (colour.length + 1))]"
             :label="genre.genre"
+            :key="genre.id"
           ></v-checkbox>
         </v-col>
       </v-row>
+
+      <!--textarea/date field-->
       <v-row>
         <v-col cols="6">
           <v-textarea
@@ -105,24 +131,31 @@
           </v-menu>
         </v-col>
       </v-row>
-      <v-alert
-        class="ml-9"
-        v-show="!!message"
-        type="success"
-        dense
-        text
-        dismissible
-      >
-        {{ message }}
-      </v-alert>
-      <v-btn
-        color="light-blue lighten-4"
-        class="blue--text ml-9"
-        form="form"
-        @click="insertData"
-        depressed
-        >SUBMIT</v-btn
-      >
+
+      <!--button-->
+      <v-row>
+        <v-col cols="6">
+          <v-btn
+            color="light-blue lighten-4"
+            class="blue--text ml-9"
+            form="form"
+            @click="insertData"
+            depressed
+            >SUBMIT</v-btn
+          >
+        </v-col>
+        <v-col cols="6">
+          <v-alert
+            class="ml-9"
+            v-show="!!message"
+            type="success"
+            dense
+            dismissible
+          >
+            {{ message }}
+          </v-alert>
+        </v-col>
+      </v-row>
     </v-container>
   </v-form>
 </template>
@@ -180,6 +213,8 @@ export default {
       let formData = new FormData();
       formData.append("movie", this.form.movie);
       formData.append("file", this.form.image);
+      formData.append("director", this.form.director);
+      formData.append("link", this.form.link);
       formData.append("rating", this.form.rating);
       formData.append("summary", this.form.summary);
       formData.append("duration", this.form.duration);
@@ -187,17 +222,13 @@ export default {
       formData.append("releaseDate", this.form.releaseDate);
       formData.append("genres", this.form.genres);
 
-      axios
-        .post("/api/insertMovie", formData, {
-          headers: {
-            "Content-type": "multipart/form-data",
-          },
-        })
+      this.$store
+        .dispatch("insertData", formData)
         .then(({ data }) => (this.message = data.message));
     },
   },
   created() {
-    axios.get("/api/insertMovie").then((response) => {
+    this.$store.dispatch("getMovieData").then((response) => {
       this.genres = response.data.genres;
       this.releases = response.data.releases;
     });

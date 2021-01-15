@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Model\Movie;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,13 @@ Route::get('/{vue_capture?}', function () {
     return view('home');
 })->where('vue_capture', '(.*)');
 
-// Route::resource('/insertMovie', 'backend\InsertMovieController');
+// Route::get("/",function() {
+//     $movie = Movie::find(1)->genres()->orderBy('id')->get();
+//     $arr   = [];
+//     foreach ($movie as $item) {
+//         array_push( $arr, $item->genre);
+//     }; 
+//     return $arr;
+// });
 
 

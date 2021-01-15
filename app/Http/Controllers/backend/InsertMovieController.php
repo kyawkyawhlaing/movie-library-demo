@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Model\Movie;
 use App\Model\Release;
@@ -51,11 +50,13 @@ class InsertMovieController extends Controller
         ]);
 
         $file = $request->file('file');
-        $imgPath =  $file->store('poster', 'public');
+        $imgPath =  $file->store('posters', 'public');
 
         $movie = Movie::create([
             'movie'     => $request->get('movie'),
             'image'     => $imgPath,
+            'director'  => $request->get('director'),
+            'link'      => $request->get('link'),
             'rating'    => $request->get('rating'),
             'summary'   => $request->get('summary'),
             'duration'  => $request->get('duration'),

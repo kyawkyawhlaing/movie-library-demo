@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="space-around">
-      <v-col cols="12" sm="6" md="6">
+      <v-col cols="6" class="hidden-md-and-down">
         <v-card width="600" height="auto" flat>
           <v-img
             class="hidden-md-and-down"
@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
   name: "login",
@@ -81,7 +80,7 @@ export default {
   },
   computed: {
     error() {
-      return this.$store.state.error;
+      return this.$store.state.login.error;
     },
   },
   methods: {
@@ -95,7 +94,7 @@ export default {
             password: this.password,
           })
           .then(() => {
-            if (this.$store.state.user) {
+            if (this.$store.state.login.user) {
               this.$router.push("/dashboard")
               this.loader = false
             } else {

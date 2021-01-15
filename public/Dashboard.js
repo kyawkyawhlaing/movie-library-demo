@@ -155,7 +155,7 @@ var render = function() {
                 "v-tab",
                 {
                   staticClass: "font-weight-bold",
-                  attrs: { to: { name: "Dashboard" } }
+                  attrs: { to: { name: "DashboardDataTable" } }
                 },
                 [_vm._v(" Dashboard ")]
               ),
