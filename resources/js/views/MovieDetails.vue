@@ -7,11 +7,13 @@
           type="image,list-item"
           v-if="lazyloading"
         ></v-skeleton-loader>
-        <v-card v-else height="auto">
+        <v-card v-else height="auto" tile hover>
           <v-img
             :src="'../../storage/' + item.image"
             :alt="item.movie"
             :key="item.id"
+            width="300"
+            height="400"
             contain
           ></v-img>
           <v-card-text>
@@ -29,7 +31,7 @@
           type="card-heading,article"
           v-if="lazyloading"
         ></v-skeleton-loader>
-        <v-card color="light-blue darken-2 white--text" elevation="10" v-else>
+        <v-card color="light-blue darken-2 white--text" elevation="20" v-else>
           <v-card-title class="display-3"> {{ item.movie }} </v-card-title>
           <v-divider></v-divider>
           <v-card-text class="white--text">
@@ -47,7 +49,7 @@
               <v-chip
                 v-for="genre in genres"
                 class="white--text"
-                :color="color[Math.floor(Math.random() * color.length + 1)]"
+                :color="color[Math.floor(Math.random() * (color.length + 1))]"
                 :key="genre.id"
                 >{{ genre.genre }}</v-chip
               >
@@ -62,7 +64,7 @@
             <v-row justify="center">
               <div class="ml-3">Director</div>
               <v-spacer></v-spacer>
-              <div class="mr-3">{{ item.director | N/A }}</div>
+              <div class="mr-3">{{ item.director || N/A }}</div>
             </v-row>
             <br />
             <v-divider></v-divider>
@@ -80,6 +82,7 @@
     <!--video-->
     <v-card flat>
       <v-sheet>
+        <h1 class="text--secondary text-left display-2 mb-10">Teaser...</h1>
         <v-skeleton-loader
           v-if="lazyloading"
           type="card-avatar"
@@ -144,3 +147,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.transparent {
+  background: transparent;
+}
+</style>
