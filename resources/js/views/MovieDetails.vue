@@ -72,7 +72,7 @@
             <v-row justify="center">
               <div class="ml-3">Starring</div>
               <v-spacer></v-spacer>
-              <div class="mr-3">{{ item.cast }}</div>
+              <div class="mx-3">{{ item.cast }}</div>
             </v-row>
           </v-card-text>
         </v-card>
