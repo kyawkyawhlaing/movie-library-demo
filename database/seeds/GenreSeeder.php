@@ -16,7 +16,8 @@ class GenreSeeder extends Seeder
             'Adventure', 'Action', 'Adult', 'Animation',
             'Comedy', 'Crime', 'Drama', 'Family',
             'Fantasy', 'Love', 'Mystery', 'Romance',
-            'Sci-Fi', 'Thriller', 'Horror','Western'
+            'Sci-Fi', 'Superhero', 'Thriller', 'Horror',
+            'Western'
         ];
         foreach ($genres as $genre) {
             Genre::insert([
