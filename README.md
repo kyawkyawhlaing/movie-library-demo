@@ -2,8 +2,8 @@
   <h1>Home Page</h1>
   <img width="700" height="auto" src="public/images/home_page.png">
   <h2>MoviDetail Page</h2>
-  <img width="400" height="auto" src="public/images/movie_detail_top.png">
-  <img width="400" height="auto" src="public/images/movie_detail_bot.png">
+  <img align="left" width="400" height="auto" src="public/images/movie_detail_top.png">
+  <img align="right" width="400" height="auto" src="public/images/movie_detail_bot.png">
 </p>
 
 ## Prerequisites
