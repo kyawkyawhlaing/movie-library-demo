@@ -45,8 +45,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -136,15 +134,6 @@ var render = function() {
         [
           _c("v-toolbar-title", [_vm._v("V-Catalogue")]),
           _vm._v(" "),
-          _c("v-avatar", {
-            attrs: {
-              color: _vm.$vuetify.breakpoint.smAndDown
-                ? "grey darken-1"
-                : "transparent",
-              size: "32"
-            }
-          }),
-          _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
           _c(
@@ -186,10 +175,22 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("v-avatar", {
-            staticClass: "hidden-sm-and-down",
-            attrs: { color: "grey darken-1 shrink", size: "36" }
-          })
+          _c(
+            "v-avatar",
+            {
+              staticClass: "hidden-sm-and-down",
+              attrs: { color: "grey darken-1 shrink", size: "36" }
+            },
+            [
+              _c("img", {
+                attrs: {
+                  src:
+                    "https://image.freepik.com/free-vector/boy-with-dog-cartoon-design_24640-46773.jpg",
+                  alt: "avatar"
+                }
+              })
+            ]
+          )
         ],
         1
       ),

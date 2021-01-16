@@ -1,36 +1,39 @@
 <template>
   <div class="home">
-    <v-carousel
-      height="400"
-      hide-delimiter-background
-      show-arrows-on-hover
-      cycle
+    <v-parallax
+      height="300"
+      src="https://cdn.pixabay.com/photo/2016/04/12/22/35/watercolour-1325656_960_720.jpg"
     >
-      <v-carousel-item v-for="(slide, i) in slides" :key="i">
-        <v-sheet :color="colors[i]" height="100%">
-          <v-row class="fill-height" align="center" justify="center">
-            <div class="display-3">{{ slide }} Slide</div>
-          </v-row>
-        </v-sheet>
-      </v-carousel-item>
-    </v-carousel>
+      <v-row align="center" justify="center">
+        <v-col class="white--text text-center">
+          <h1 class="display-1 font-weight-bold">Welcome to V-Catalogue</h1>
+          <h5>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+            odit eaque harum earum optio, beatae asperiores porro temporibus
+            accusamus labore rerum provident quo numquam quod? Dicta quidem
+            impedit numquam nulla!
+          </h5>
+        </v-col>
+      </v-row>
+    </v-parallax>
+
+    <!-- movie card-->
     <v-container>
       <v-row class="mx-0">
+        <template slot="progress">
+        <v-progress-linear
+          indeterminate
+          color="deep-purple"
+          absolute
+        ></v-progress-linear>
+        </template>
         <v-col cols="12" sm="3" md="3" v-for="item in items" :key="item.id">
           <v-skeleton-loader
             class="ma-10"
-            type="card-avatar,divider,button"
+            type="card-avatar,divider"
             v-if="lazyloading"
           ></v-skeleton-loader>
           <v-card v-else class="mx-auto" :loading="isloading">
-            <template slot="progress">
-              <v-progress-linear
-                indeterminate
-                height="6"
-                color="deep-purple"
-              ></v-progress-linear>
-            </template>
-
             <v-img
               :src="'./storage/' + item.image"
               height="250"
@@ -40,15 +43,15 @@
             <v-card-title class="mx-auto">{{ item.movie }}</v-card-title>
             <v-card-subtitle class="font-weight-bold"
               >Rating {{ item.rating }}
-            <v-btn
-              :to="{ name: 'MovieDetails', params: { id: item.id } }"
-              class="ml-4"
-              color="light-blue lighten-1"
-              @click="reserve"
-              text
-              fab
+              <v-btn
+                :to="{ name: 'MovieDetails', params: { id: item.id } }"
+                class="ml-4"
+                color="light-blue lighten-1"
+                @click="reserve"
+                text
+                fab
               >
-              <v-icon>mdi-eye</v-icon>
+                <v-icon>mdi-eye</v-icon>
               </v-btn>
             </v-card-subtitle>
           </v-card>

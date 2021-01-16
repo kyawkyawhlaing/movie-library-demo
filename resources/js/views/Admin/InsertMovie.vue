@@ -47,7 +47,7 @@
           <v-text-field
             v-model="form.director"
             label="Director"
-            :rules="rules.required"
+            :rules="[rules.required]"
             solo-inverted
           >
           </v-text-field>
@@ -56,12 +56,12 @@
           <v-text-field
             v-model="form.link"
             label="Link"
-            :rules="rules.required"
+            :rules="[rules.required]"
             solo-inverted
           >
           </v-text-field>
         </v-col>
-        <v-col >
+        <v-col>
           <v-file-input
             v-model="form.image"
             accept="image/*"
@@ -154,6 +154,9 @@
           >
             {{ message }}
           </v-alert>
+          <v-alert class="ml-9" v-show="!!error" type="error" dense dismissible>
+            {{ message }}
+          </v-alert>
         </v-col>
       </v-row>
     </v-container>
@@ -171,6 +174,7 @@ export default {
       picker: null,
       menu: false,
       message: null,
+      error: "",
       colour: color,
       form: {
         movie: "",
@@ -224,7 +228,8 @@ export default {
 
       this.$store
         .dispatch("insertData", formData)
-        .then(({ data }) => (this.message = data.message));
+        .then(({ data }) => (this.message = data.message))
+        .catch(() => (this.error = "Duplicated Error!"));
     },
   },
   created() {

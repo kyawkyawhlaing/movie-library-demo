@@ -2,10 +2,6 @@
   <div>
     <v-app-bar app color="light-blue darken-1" flat>
       <v-toolbar-title>V-Catalogue</v-toolbar-title>
-      <v-avatar
-        :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
-        size="32"
-      ></v-avatar>
       <v-spacer></v-spacer>
 
       <v-tabs centered class="ml-n9" color="white">
@@ -18,7 +14,9 @@
         class="hidden-sm-and-down"
         color="grey darken-1 shrink"
         size="36"
-      ></v-avatar>
+      >
+      <img src="https://image.freepik.com/free-vector/boy-with-dog-cartoon-design_24640-46773.jpg" alt="avatar">
+      </v-avatar>
     </v-app-bar>
 
     <v-main class="grey lighten-3 pt-3">

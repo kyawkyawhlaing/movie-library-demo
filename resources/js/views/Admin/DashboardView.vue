@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <v-alert v-show="message" border="left" type="success" dismissible> {{ message }}</v-alert>
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -11,52 +12,6 @@
           <v-toolbar-title>My CRUD</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <!-- <div class="text-center">
-            <v-dialog v-model="dialog" width="500">
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn color="green lighten-2" dark v-bind="attrs" v-on="on">
-                  New Item
-                </v-btn>
-              </template>
-
-              <v-card>
-                <v-card-title class="headline grey lighten-2">
-                  V-Catalogue
-                </v-card-title>
-
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col>
-                        <v-text-field label="movie"></v-text-field>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="cast"></v-text-field>
-                      </v-col>
-                    </v-row>
-                    <v-row>
-                      <v-col>
-                        <v-text-field label="image"></v-text-field>
-                      </v-col>
-                      <v-col>
-                        <v-text-field label="summary"></v-text-field>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="error" text>Cancle</v-btn>
-                  <v-btn color="primary" text @click="dialog = false">
-                    Update
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-          </div> -->
         </v-toolbar>
       </template>
       <template v-slot:[`item.image`]="{ item }">
@@ -67,7 +22,6 @@
         ></v-img>
       </template>
       <template v-slot:[`item.action`]="{ item }">
-        <!-- <v-icon small class="mx-2" @click="editItem(item)">mdi-pencil</v-icon> -->
         <v-icon large class="mx-2" color="error" @click="deleteItem(item)"
           >mdi-delete</v-icon
         >
@@ -88,18 +42,23 @@ export default {
         { text: "Actions", value: "action", sortable: false },
       ],
       desserts: [],
+      message: ""
     };
   },
   methods: {
     deleteItem(payload) {
       const movieId = payload.id;
-      this.$store.dispatch("deleteItem", movieId)
-    }
+      this.$store.dispatch("deleteItem", movieId).then(() => {
+        const indx = this.desserts.findIndex(dessert => dessert.id == movieId);
+        this.desserts.splice(indx, 1);
+        this.message = "Successfully Deleted!"
+      });
+    },
   },
   mounted() {
-    this.$store.dispatch("getMovieInfo").then( ({data}) => {
-      this.desserts = data.movies
-      console.log(this.desserts)
+    this.$store.dispatch("getMovieInfo").then(({ data }) => {
+      this.desserts = data.movies;
+      console.log(this.desserts.id);
     });
   },
 };

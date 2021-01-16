@@ -82,6 +82,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   components: {},
@@ -153,43 +156,34 @@ var render = function() {
     { staticClass: "home" },
     [
       _c(
-        "v-carousel",
+        "v-parallax",
         {
           attrs: {
-            height: "400",
-            "hide-delimiter-background": "",
-            "show-arrows-on-hover": "",
-            cycle: ""
+            height: "300",
+            src:
+              "https://cdn.pixabay.com/photo/2016/04/12/22/35/watercolour-1325656_960_720.jpg"
           }
         },
-        _vm._l(_vm.slides, function(slide, i) {
-          return _c(
-            "v-carousel-item",
-            { key: i },
+        [
+          _c(
+            "v-row",
+            { attrs: { align: "center", justify: "center" } },
             [
-              _c(
-                "v-sheet",
-                { attrs: { color: _vm.colors[i], height: "100%" } },
-                [
-                  _c(
-                    "v-row",
-                    {
-                      staticClass: "fill-height",
-                      attrs: { align: "center", justify: "center" }
-                    },
-                    [
-                      _c("div", { staticClass: "display-3" }, [
-                        _vm._v(_vm._s(slide) + " Slide")
-                      ])
-                    ]
+              _c("v-col", { staticClass: "white--text text-center" }, [
+                _c("h1", { staticClass: "display-1 font-weight-bold" }, [
+                  _vm._v("Welcome to V-Catalogue")
+                ]),
+                _vm._v(" "),
+                _c("h5", [
+                  _vm._v(
+                    "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore\n          odit eaque harum earum optio, beatae asperiores porro temporibus\n          accusamus labore rerum provident quo numquam quod? Dicta quidem\n          impedit numquam nulla!\n        "
                   )
-                ],
-                1
-              )
+                ])
+              ])
             ],
             1
           )
-        }),
+        ],
         1
       ),
       _vm._v(" "),
@@ -199,87 +193,91 @@ var render = function() {
           _c(
             "v-row",
             { staticClass: "mx-0" },
-            _vm._l(_vm.items, function(item) {
-              return _c(
-                "v-col",
-                { key: item.id, attrs: { cols: "12", sm: "3", md: "3" } },
+            [
+              _c(
+                "template",
+                { slot: "default" },
                 [
-                  _vm.lazyloading
-                    ? _c("v-skeleton-loader", {
-                        staticClass: "ma-10",
-                        attrs: { type: "card-avatar,divider,button" }
-                      })
-                    : _c(
-                        "v-card",
-                        {
-                          staticClass: "mx-auto",
-                          attrs: { loading: _vm.isloading }
-                        },
-                        [
-                          _c(
-                            "template",
-                            { slot: "progress" },
-                            [
-                              _c("v-progress-linear", {
-                                attrs: {
-                                  indeterminate: "",
-                                  height: "6",
-                                  color: "deep-purple"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-img", {
-                            attrs: {
-                              src: "./storage/" + item.image,
-                              height: "250",
-                              alt: item.movie,
-                              cover: ""
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-card-title", { staticClass: "mx-auto" }, [
-                            _vm._v(_vm._s(item.movie))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-subtitle",
-                            { staticClass: "font-weight-bold" },
-                            [
-                              _vm._v(
-                                "Rating " + _vm._s(item.rating) + "\n          "
-                              ),
-                              _c(
-                                "v-btn",
-                                {
-                                  staticClass: "ml-4",
-                                  attrs: {
-                                    to: {
-                                      name: "MovieDetails",
-                                      params: { id: item.id }
-                                    },
-                                    color: "light-blue lighten-1",
-                                    text: "",
-                                    fab: ""
-                                  },
-                                  on: { click: _vm.reserve }
-                                },
-                                [_c("v-icon", [_vm._v("mdi-eye")])],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        2
-                      )
+                  _c("v-progress-linear", {
+                    attrs: {
+                      indeterminate: "",
+                      color: "deep-purple",
+                      absolute: ""
+                    }
+                  })
                 ],
                 1
-              )
-            }),
-            1
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.items, function(item) {
+                return _c(
+                  "v-col",
+                  { key: item.id, attrs: { cols: "12", sm: "3", md: "3" } },
+                  [
+                    _vm.lazyloading
+                      ? _c("v-skeleton-loader", {
+                          staticClass: "ma-10",
+                          attrs: { type: "card-avatar,divider" }
+                        })
+                      : _c(
+                          "v-card",
+                          {
+                            staticClass: "mx-auto",
+                            attrs: { loading: _vm.isloading }
+                          },
+                          [
+                            _c("v-img", {
+                              attrs: {
+                                src: "./storage/" + item.image,
+                                height: "250",
+                                alt: item.movie,
+                                cover: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-card-title", { staticClass: "mx-auto" }, [
+                              _vm._v(_vm._s(item.movie))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "v-card-subtitle",
+                              { staticClass: "font-weight-bold" },
+                              [
+                                _vm._v(
+                                  "Rating " +
+                                    _vm._s(item.rating) +
+                                    "\n            "
+                                ),
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "ml-4",
+                                    attrs: {
+                                      to: {
+                                        name: "MovieDetails",
+                                        params: { id: item.id }
+                                      },
+                                      color: "light-blue lighten-1",
+                                      text: "",
+                                      fab: ""
+                                    },
+                                    on: { click: _vm.reserve }
+                                  },
+                                  [_c("v-icon", [_vm._v("mdi-eye")])],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                  ],
+                  1
+                )
+              })
+            ],
+            2
           )
         ],
         1
@@ -336,14 +334,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCarousel */ "./node_modules/vuetify/lib/components/VCarousel/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VPagination */ "./node_modules/vuetify/lib/components/VPagination/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VPagination */ "./node_modules/vuetify/lib/components/VPagination/index.js");
+/* harmony import */ var vuetify_lib_components_VParallax__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VParallax */ "./node_modules/vuetify/lib/components/VParallax/index.js");
 /* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
-/* harmony import */ var vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VSkeletonLoader */ "./node_modules/vuetify/lib/components/VSkeletonLoader/index.js");
+/* harmony import */ var vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VSkeletonLoader */ "./node_modules/vuetify/lib/components/VSkeletonLoader/index.js");
 
 
 
@@ -377,9 +374,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCarousel: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__["VCarousel"],VCarouselItem: vuetify_lib_components_VCarousel__WEBPACK_IMPORTED_MODULE_6__["VCarouselItem"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_9__["VImg"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_10__["VPagination"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_12__["VSheet"],VSkeletonLoader: vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_13__["VSkeletonLoader"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardSubtitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardSubtitle"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VContainer"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_8__["VImg"],VPagination: vuetify_lib_components_VPagination__WEBPACK_IMPORTED_MODULE_9__["VPagination"],VParallax: vuetify_lib_components_VParallax__WEBPACK_IMPORTED_MODULE_10__["VParallax"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_11__["VProgressLinear"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"],VSkeletonLoader: vuetify_lib_components_VSkeletonLoader__WEBPACK_IMPORTED_MODULE_12__["VSkeletonLoader"]})
 
 
 /* hot reload */
