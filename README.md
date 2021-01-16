@@ -3,7 +3,7 @@
   <img width="800" height="auto" src="public/images/home_page.png">
 </p>
 <p float="left">
-  <h2>MoviDetail Page</h2>
+  <h2>MovieDetails Page</h2>
   <img  width="400" height="auto" src="public/images/movie_detail_top.png">
   <img  width="400" height="auto" src="public/images/movie_detail_bot.png">
 </p>
