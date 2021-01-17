@@ -155,7 +155,7 @@
             {{ message }}
           </v-alert>
           <v-alert class="ml-9" v-show="!!error" type="error" dense dismissible>
-            {{ message }}
+            {{ error }}
           </v-alert>
         </v-col>
       </v-row>
@@ -174,7 +174,7 @@ export default {
       picker: null,
       menu: false,
       message: null,
-      error: "",
+      error: null,
       colour: color,
       form: {
         movie: "",
@@ -188,7 +188,7 @@ export default {
       },
       rules: {
         required: (value) => !!value || "required.",
-        counter: (value) => value.length <= 20 || "Max 20 characters.",
+        counter: (value) => value.length <= 100 || "Max 100 characters.",
         string: (value) => value.length <= 255 || "Must be String.",
         rating: (number) =>
           number.valueOf() <= 10 || "Highest rating value is 10",
@@ -241,4 +241,4 @@ export default {
 };
 </script>
 <style scoped>
-</style>>
+</style>

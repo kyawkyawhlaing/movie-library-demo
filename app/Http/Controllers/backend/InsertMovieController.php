@@ -49,8 +49,16 @@ class InsertMovieController extends Controller
             'file' => 'required|file|mimes: jpg,jpeg,png|max: 2048',
         ]);
 
+        //retrieve uploaded file object
         $file = $request->file('file');
-        $imgPath =  $file->store('posters', 'public');
+        $file = $request->file;
+
+        //get original name
+        // $fileName = $request->file('file')->getClientOriginalName();
+        // $fileName = $request->file->getClientOriginalName(); 
+
+        //store upload file in storage with original name
+        $imgPath =  $file->storeAs('posters', $file->getClientOriginalName(), 'public');
 
         $movie = Movie::create([
             'movie'     => $request->get('movie'),
