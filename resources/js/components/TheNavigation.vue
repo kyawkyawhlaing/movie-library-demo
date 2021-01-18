@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-app-bar app class="light-blue darken-1" hide-on-scroll>
+    <v-app-bar app class="light-blue darken-1" elevation="20" hide-on-scroll>
       <v-app-bar-nav-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
