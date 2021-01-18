@@ -45,3 +45,5 @@ Install and run Apache Web server and MySQL
 ### Plugins
 
 -   vuetify-loader
+
+P.S Not responsive for mobile,tablet
