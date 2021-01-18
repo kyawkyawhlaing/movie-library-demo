@@ -32,8 +32,6 @@ export default {
 *,
 html,
 body {
-  margin: 0;
-  padding: 0;
   list-style: 0;
   font-size: 1em;
   font-weight: 600;

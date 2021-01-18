@@ -176,6 +176,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -426,6 +427,7 @@ var render = function() {
                     attrs: {
                       label: "Link",
                       rules: [_vm.rules.required],
+                      hint: "Must be embed link from youtube.(i.e-8EJ3zbKTWQ8)",
                       "solo-inverted": ""
                     },
                     model: {
