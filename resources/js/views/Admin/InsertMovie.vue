@@ -57,6 +57,7 @@
             v-model="form.link"
             label="Link"
             :rules="[rules.required]"
+            hint="Must be embed link from youtube.(i.e-8EJ3zbKTWQ8)"
             solo-inverted
           >
           </v-text-field>
