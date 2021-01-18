@@ -41,6 +41,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -62,7 +63,8 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false
       }],
       desserts: [],
-      message: ""
+      message: "",
+      error: null
     };
   },
   methods: {
@@ -78,6 +80,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.desserts.splice(indx, 1);
 
         _this.message = "Successfully Deleted!";
+      })["catch"](function () {
+        return _this.error = "Unauthorized!You need to login again.Pls do not reload the page.";
       });
     }
   },
@@ -126,6 +130,22 @@ var render = function() {
           attrs: { border: "left", type: "success", dismissible: "" }
         },
         [_vm._v(" " + _vm._s(_vm.message))]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-alert",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.error,
+              expression: "error"
+            }
+          ],
+          attrs: { border: "left", type: "error", dismissible: "" }
+        },
+        [_vm._v(" " + _vm._s(_vm.error) + " ")]
       ),
       _vm._v(" "),
       _c("v-data-table", {

@@ -139,6 +139,7 @@
             color="light-blue lighten-4"
             class="blue--text ml-9"
             form="form"
+            :loading="loader1"
             @click="insertData"
             depressed
             >SUBMIT</v-btn
@@ -176,6 +177,7 @@ export default {
       message: null,
       error: null,
       colour: color,
+      loader1: false,
       form: {
         movie: "",
         image: null,
@@ -205,7 +207,7 @@ export default {
   },
   watch: {
     menu(val) {
-      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
+      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"),500);
     },
   },
   methods: {
@@ -214,6 +216,7 @@ export default {
     },
     insertData() {
       this.$refs.form.validate();
+      this.loader1 = true;
       let formData = new FormData();
       formData.append("movie", this.form.movie);
       formData.append("file", this.form.image);
@@ -228,7 +231,10 @@ export default {
 
       this.$store
         .dispatch("insertData", formData)
-        .then(({ data }) => (this.message = data.message))
+        .then(({ data }) => {
+          this.message = data.message;
+          this.loader1 = false;
+        })
         .catch(() => (this.error = "Duplicated Error!"));
     },
   },

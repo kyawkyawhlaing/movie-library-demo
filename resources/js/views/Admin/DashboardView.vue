@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-alert v-show="message" border="left" type="success" dismissible> {{ message }}</v-alert>
+    <v-alert v-show="error" border="left" type="error" dismissible> {{error}} </v-alert>
     <v-data-table
       :headers="headers"
       :items="desserts"
@@ -42,7 +43,8 @@ export default {
         { text: "Actions", value: "action", sortable: false },
       ],
       desserts: [],
-      message: ""
+      message: "",
+      error: null
     };
   },
   methods: {
@@ -52,7 +54,8 @@ export default {
         const indx = this.desserts.findIndex(dessert => dessert.id == movieId);
         this.desserts.splice(indx, 1);
         this.message = "Successfully Deleted!"
-      });
+      })
+      .catch(() => this.error = "Unauthorized!You need to login again.Pls do not reload the page.")
     },
   },
   mounted() {

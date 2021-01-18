@@ -175,6 +175,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -186,6 +187,7 @@ __webpack_require__.r(__webpack_exports__);
       message: null,
       error: null,
       colour: _color__WEBPACK_IMPORTED_MODULE_0__["default"],
+      loader1: false,
       form: {
         movie: "",
         image: null,
@@ -225,7 +227,7 @@ __webpack_require__.r(__webpack_exports__);
 
       val && setTimeout(function () {
         return _this.$refs.picker.activePicker = "YEAR";
-      });
+      }, 500);
     }
   },
   methods: {
@@ -236,6 +238,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.$refs.form.validate();
+      this.loader1 = true;
       var formData = new FormData();
       formData.append("movie", this.form.movie);
       formData.append("file", this.form.image);
@@ -249,7 +252,8 @@ __webpack_require__.r(__webpack_exports__);
       formData.append("genres", this.form.genres);
       this.$store.dispatch("insertData", formData).then(function (_ref) {
         var data = _ref.data;
-        return _this2.message = data.message;
+        _this2.message = data.message;
+        _this2.loader1 = false;
       })["catch"](function () {
         return _this2.error = "Duplicated Error!";
       });
@@ -624,6 +628,7 @@ var render = function() {
                       attrs: {
                         color: "light-blue lighten-4",
                         form: "form",
+                        loading: _vm.loader1,
                         depressed: ""
                       },
                       on: { click: _vm.insertData }
