@@ -5,16 +5,16 @@
     cache-items
     :loading="isLoading"
     :search-input.sync="search"
-    hide-no-data
-    hide-selected
-    append-icon="mdi-movie-search"
-    label="Search Movie"
     v-on:keydown.enter="pathToDetails"
     color="white"
-    clearable
+    append-icon="mdi-movie-search"
+    label="Search Movie"
     flat
-    return-object
     rounded
+    clearable
+    hide-no-data
+    hide-selected
+    return-object
     solo-inverted
   >
   </v-autocomplete>
@@ -30,7 +30,7 @@ export default {
       items: [],
       search: null,
       states: [],
-      result: null
+      result: null,
     };
   },
   watch: {
@@ -61,12 +61,19 @@ export default {
       axios.get("/api/getAllmovies").then((res) => {
         const matchRes = res.data.movies;
         matchRes.map((match) => {
-          if (match.movie == this.model) return this.result = match.id;
+          if (match.movie == this.model) return (this.result = match.id);
+          else return (this.result = null);
         });
-        this.$router.push({ name: "MovieDetails", params: { id: this.result } });
+        if (this.result !== null) {
+          this.$router.push({
+            name: "MovieDetails",
+            params: { id: this.result },
+          });
+        } else {
+          this.model = ""
+        }
       });
     },
-
   },
 };
 </script>
