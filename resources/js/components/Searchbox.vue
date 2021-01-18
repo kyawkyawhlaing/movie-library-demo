@@ -5,13 +5,13 @@
     cache-items
     :loading="isLoading"
     :search-input.sync="search"
-    v-on:keydown.enter="pathToDetails"
-    color="white"
     append-icon="mdi-movie-search"
     label="Search Movie"
+    v-on:keydown.enter="pathToDetails"
+    color="white"
+    clearable
     flat
     rounded
-    clearable
     hide-no-data
     hide-selected
     return-object
@@ -62,16 +62,12 @@ export default {
         const matchRes = res.data.movies;
         matchRes.map((match) => {
           if (match.movie == this.model) return (this.result = match.id);
-          else return (this.result = null);
         });
-        if (this.result !== null) {
+        if (!!this.result)
           this.$router.push({
             name: "MovieDetails",
             params: { id: this.result },
           });
-        } else {
-          this.model = ""
-        }
       });
     },
   },
