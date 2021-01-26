@@ -234,9 +234,9 @@ export default {
         .dispatch("insertData", formData)
         .then(({ data }) => {
           this.message = data.message;
-          this.loader1 = false;
         })
-        .catch(() => (this.error = "Duplicated Error!"));
+        .catch(() => (this.error = "May be Duplicated Error Or Empty input field!"))
+        .finally(() => this.loader1 = false);
     },
   },
   created() {
